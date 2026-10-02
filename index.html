@@ -3,420 +3,795 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario風 - 粵語讀音炸彈遊戲</title>
+    <title>言語能力提昇課程 - 拼字大師</title>
     <style>
-        /* 基礎設定與字體 */
-        body {
-            font-family: "Microsoft JhengHei", "PingFang HK", sans-serif;
-            background-color: #ffffff; /* 純白背景 */
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            position: relative;
+        /* =========================================
+           Minecraft 像素主題與動態背景
+           ========================================= */
+        body { 
+            font-family: "Courier New", Courier, monospace, -apple-system, sans-serif; 
+            background-color: #5C94FC; 
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.2) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.2) 2px, transparent 2px);
+            background-size: 40px 40px;
+            color: #333; margin: 0; padding: 20px; text-align: center; 
+            overflow-x: hidden;
         }
-
-        /* ----- Mario 風格裝飾元素 (絕對定位在四周) ----- */
-        .decor {
-            position: absolute;
-            z-index: -1;
-            user-select: none;
-        }
-        .cloud { font-size: 60px; top: 10%; left: 15%; animation: floatSlow 8s infinite alternate ease-in-out; }
-        .cloud2 { font-size: 80px; top: 15%; right: 10%; animation: floatSlow 10s infinite alternate-reverse ease-in-out; }
-        .star { font-size: 50px; top: 30%; left: 8%; animation: spin 4s infinite linear; }
-        .mushroom { font-size: 50px; bottom: 20%; right: 15%; animation: bounce 2s infinite; }
+        .hidden { display: none !important; }
         
-        /* CSS 繪製水管與磚塊 */
-        .pipe {
-            position: absolute;
-            bottom: 0;
-            left: 10%;
-            width: 80px;
-            height: 120px;
-            background: linear-gradient(to right, #2ecc71, #27ae60, #2ecc71);
-            border: 4px solid #000;
-            border-bottom: none;
-            border-radius: 5px 5px 0 0;
-            z-index: -1;
-        }
-        .pipe::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -10px;
-            width: 92px;
-            height: 20px;
-            background: linear-gradient(to right, #2ecc71, #27ae60, #2ecc71);
-            border: 4px solid #000;
-            border-radius: 5px;
+        .clouds-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .cloud { position: absolute; background: white; opacity: 0.8; box-shadow: 10px 10px 0px rgba(255,255,255,0.5), -10px -10px 0px rgba(255,255,255,0.5), 10px -10px 0px rgba(255,255,255,0.5), -10px 10px 0px rgba(255,255,255,0.5); }
+        @keyframes drift { from { transform: translateX(-200px); } to { transform: translateX(120vw); } }
+        .cloud-1 { width: 120px; height: 40px; top: 15%; animation: drift 40s linear infinite; }
+        .cloud-2 { width: 180px; height: 60px; top: 40%; animation: drift 55s linear infinite; animation-delay: -15s; opacity: 0.6; }
+        .cloud-3 { width: 100px; height: 30px; top: 70%; animation: drift 35s linear infinite; animation-delay: -25s; }
+
+        @keyframes bobbing { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .mc-title-container { animation: bobbing 3s ease-in-out infinite; margin-top: 40px; margin-bottom: 40px; }
+        .mc-title { 
+            color: #FFF; font-size: 52px; font-weight: 900; display: inline-block;
+            text-shadow: 6px 6px 0px #3E2813, -2px -2px 0px #55AA55, 2px -2px 0px #55AA55, -2px 2px 0px #55AA55, 2px 2px 0px #55AA55; 
+            letter-spacing: 4px; padding: 20px 40px; background: #8B5A2B; border: 6px solid #3E2813; border-top: 20px solid #55AA55; box-shadow: 10px 10px 0px rgba(0,0,0,0.3);
         }
         
-        .blocks {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 2px;
-            z-index: -1;
+        .btn { 
+            padding: 15px 30px; font-size: 22px; font-weight: bold; margin: 10px; cursor: pointer; 
+            background: #C6C6C6; color: #111; border: 4px solid; border-color: #FFF #555 #555 #FFF; 
+            transition: all 0.1s; font-family: "Courier New", Courier, monospace, sans-serif; box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
         }
-        .brick {
-            width: 50px; height: 50px;
-            background-color: #d35400;
-            border: 3px solid #000;
-            box-shadow: inset -4px -4px 0 rgba(0,0,0,0.3), inset 4px 4px 0 rgba(255,255,255,0.4);
-        }
-        .question-block {
-            width: 50px; height: 50px;
-            background-color: #f1c40f;
-            border: 3px solid #000;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: bold; font-size: 30px; color: #d35400;
-            box-shadow: inset -4px -4px 0 rgba(0,0,0,0.2), inset 4px 4px 0 rgba(255,255,255,0.6);
-            animation: pulseBlock 1.5s infinite;
-        }
+        .btn:active { border-color: #555 #FFF #FFF #555; background: #B0B0B0; transform: translateY(4px); box-shadow: 0px 0px 0px rgba(0,0,0,0.2); }
+        .btn-primary { background: #55AA55; color: #FFF; border-color: #77CC77 #226622 #226622 #77CC77; text-shadow: 2px 2px 0px #226622; }
+        .btn-primary:active { border-color: #226622 #77CC77 #77CC77 #226622; }
+        .btn-download { background: #FFD700; color: #111; border-color: #FFF #B8860B #B8860B #FFF; text-shadow: none; font-size: 24px; padding: 20px; }
 
-        /* ----- 介面面板設定 ----- */
-        .panel {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            border: 5px solid #000;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 80%;
-            max-width: 600px;
-            z-index: 10;
-        }
-        #game-screen, #result-screen { display: none; }
+        .detail-main-layout { display: flex; justify-content: center; align-items: flex-start; gap: 30px; max-width: 1000px; margin: 0 auto; flex-wrap: wrap; }
+        .target-left-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; background: #8B5A2B; border: 4px solid #3E2813; border-top: 16px solid #55AA55; padding: 20px; box-shadow: 8px 8px 0px rgba(0,0,0,0.3); min-width: 150px; }
+        #detail-target-title { font-size: 90px; margin: 0 0 10px 0; font-weight: 900; color: #FFF; text-shadow: 4px 4px 0px #3E2813; }
+
+        .carousel-container { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 320px; max-width: 600px; position: relative; }
+        .phrase-card { background: #C6C6C6; border: 4px solid; border-color: #FFF #555 #555 #FFF; padding: 25px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; box-shadow: 8px 8px 0px rgba(0,0,0,0.2); }
+        .phrase-img { width: 100%; max-width: 280px; height: 260px; object-fit: cover; background: #FFF; margin-bottom: 20px; border: 4px solid #555; }
         
-        textarea {
-            width: 90%; height: 80px; margin-bottom: 15px;
-            font-size: 16px; padding: 10px; border: 3px solid #ccc; border-radius: 10px;
-        }
-        input[type="number"] { font-size: 18px; padding: 5px; width: 60px; text-align: center; border: 3px solid #ccc; border-radius: 5px; }
+        .game-status { font-size: 24px; font-weight: bold; margin-bottom: 15px; height: 35px; color: #111; background: #FFF; padding: 5px 15px; border: 2px solid #111; border-radius: 4px;}
+        .slots-container, .options-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; min-height: 90px; align-items: center; flex-wrap: wrap; }
         
-        /* Mario 風格按鈕 */
-        button {
-            font-size: 22px; padding: 12px 30px; margin: 10px; cursor: pointer;
-            border: 4px solid #000; border-radius: 10px; font-weight: bold;
-            box-shadow: 4px 4px 0 #000;
-            transition: all 0.1s;
-        }
-        button:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0 #000; }
-        .btn-start { background-color: #e74c3c; color: white; }
-        .btn-success { background-color: #3498db; color: white; width: 80%; font-size: 24px; }
+        .char-block { font-size: 42px; font-weight: bold; width: 85px; height: 85px; display: flex; align-items: center; justify-content: center; background: #8B5A2B; border: 4px solid #5C3A18; border-top: 15px solid #55AA55; border-left-color: #734A24; color: #FFF; text-shadow: 3px 3px 0px rgba(0,0,0,0.6); cursor: pointer; user-select: none; box-shadow: 4px 4px 0px rgba(0,0,0,0.3); transition: transform 0.1s; }
+        .char-block:active { transform: translateY(4px); box-shadow: 0px 0px 0px rgba(0,0,0,0.3); }
+        .char-block.empty { background: rgba(0,0,0,0.1); border: 4px dashed #FFF; box-shadow: none; pointer-events: none; }
+        .char-block.correct { background: #FFD700; border-top-color: #FFF; color: #000; text-shadow: none; border-color: #DAA520; }
+        .char-block.selected { background: #FFD700; border-top-color: #FFF; color: #000; text-shadow: none; border-color: #DAA520; transform: translateY(4px); box-shadow: 0px 0px 0px rgba(0,0,0,0.3); }
         
-        /* ----- 卡通炸彈與動畫 ----- */
-        #bomb-wrapper {
-            margin: 40px 0;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        @keyframes placeBlock { 0% { transform: scale(1.3); } 50% { transform: scale(0.9); } 100% { transform: scale(1); } }
+        .animate-place { animation: placeBlock 0.2s ease-out; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+        .animate-wrong { animation: shake 0.3s ease-in-out; border-top-color: #FF5555 !important; }
 
-        .drifting {
-            /* 飄逸動畫 */
-            animation: floatBomb 4s infinite ease-in-out;
-        }
+        .popup-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 100; border-radius: 4px; }
+        .popup-box { background: #C6C6C6; border: 6px solid; border-color: #FFF #555 #555 #FFF; padding: 30px; text-align: center; width: 85%; box-shadow: 0 0 20px #FFD700; }
+        .popup-title { font-size: 32px; color: #226622; margin-bottom: 10px; font-weight: 900; }
+        .popup-word { font-size: 60px; font-weight: bold; color: #111; margin-bottom: 10px; }
+        .popup-meaning { font-size: 22px; color: #333; margin-bottom: 25px; background: #FFF; padding: 10px; border: 4px solid #555; }
 
-        /* 炸彈本體：包裹詞語 */
-        .bomb-body {
-            width: 220px;
-            height: 220px;
-            background: radial-gradient(circle at 35% 35%, #ff4b4b, #8b0000); /* 立體感紅色炸彈 */
-            border-radius: 50%;
-            border: 8px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: inset -15px -15px 0 rgba(0,0,0,0.3), 10px 10px 20px rgba(0,0,0,0.2);
-            position: relative;
-        }
+        .admin-panel { max-width: 900px; margin: 0 auto; text-align: left; background: #C6C6C6; padding: 30px; border: 4px solid; border-color: #FFF #555 #555 #FFF; box-shadow: 10px 10px 0px rgba(0,0,0,0.3); margin-bottom: 40px;}
+        .admin-input { font-size: 18px; padding: 10px; border: 2px solid #555; width: 100%; margin-bottom: 8px; box-sizing: border-box; font-family: sans-serif; }
+        .editor-section { background: #FFF; padding: 20px; margin-bottom: 20px; border: 4px solid #555; }
 
-        /* 炸彈的蓋子與引線 */
-        .bomb-cap {
-            position: absolute;
-            top: -25px;
-            width: 60px;
-            height: 25px;
-            background-color: #333;
-            border: 4px solid #000;
-            border-radius: 5px;
+        /* 新增：道具欄格子樣式 */
+        .inv-slot { 
+            width: 45px; height: 45px; background: #8b8b8b; 
+            border: 4px solid; border-color: #373737 #fff #fff #373737; 
+            font-size: 28px; display: flex; align-items: center; justify-content: center; 
+            user-select: none; text-shadow: 2px 2px 0px rgba(0,0,0,0.5); box-sizing: border-box; 
         }
-        .bomb-spark {
-            position: absolute;
-            top: -60px;
-            font-size: 40px;
-            animation: burn 0.5s infinite alternate;
-        }
-
-        /* 顯示的目標詞語 */
-        #word-display {
-            font-size: 55px;
-            font-weight: 900;
-            color: white;
-            text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-            letter-spacing: 2px;
-            z-index: 5;
-            text-align: center;
-            padding: 10px;
-        }
-
-        /* 時間條 */
-        #timer-container {
-            width: 100%; height: 30px; background-color: #ddd;
-            border: 4px solid #000; border-radius: 15px; margin: 20px 0; overflow: hidden;
-        }
-        #fuse-bar {
-            height: 100%; width: 100%; background-color: #f1c40f;
-            transition: width 0.1s linear, background-color 0.3s;
-        }
-
-        /* 動畫庫 */
-        @keyframes floatBomb {
-            0% { transform: translate(0px, 0px) rotate(-3deg); }
-            25% { transform: translate(15px, -15px) rotate(3deg); }
-            50% { transform: translate(0px, -25px) rotate(-1deg); }
-            75% { transform: translate(-15px, -10px) rotate(2deg); }
-            100% { transform: translate(0px, 0px) rotate(-3deg); }
-        }
-        @keyframes burn {
-            0% { transform: scale(0.8) rotate(-10deg); filter: hue-rotate(0deg); }
-            100% { transform: scale(1.2) rotate(10deg); filter: hue-rotate(45deg); }
-        }
-        @keyframes shakeFast {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(-5px, 5px); }
-            50% { transform: translate(5px, -5px); }
-            75% { transform: translate(-5px, -5px); }
-        }
-        @keyframes floatSlow {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-20px); }
-        }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        @keyframes pulseBlock {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .shaking { animation: shakeFast 0.1s infinite !important; }
-        .explosion-text { font-size: 80px !important; color: #ffeb3b !important; }
-        
-        .stats { display: flex; justify-content: space-between; font-size: 20px; font-weight: bold; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- Mario 風格背景裝飾 -->
-    <div class="decor cloud">☁️</div>
-    <div class="decor cloud2">☁️</div>
-    <div class="decor star">⭐</div>
-    <div class="decor mushroom">🍄</div>
-    <div class="pipe"></div>
-    <div class="blocks">
-        <div class="brick"></div>
-        <div class="question-block">?</div>
-        <div class="brick"></div>
+    <div class="clouds-container">
+        <div class="cloud cloud-1"></div><div class="cloud cloud-2"></div><div class="cloud cloud-3"></div>
     </div>
 
-    <!-- 設定畫面 -->
-    <div id="setup-screen" class="panel">
-        <h2 style="color: #e74c3c; font-size: 32px; margin-top: 0;">💥 讀音炸彈遊戲</h2>
-        <p style="font-weight: bold;">請輸入訓練詞彙（以逗號或換行分隔）：</p>
-        <textarea id="word-input">形態意識, 構詞, 閱讀理解, 聯想, 討論, 分析, 總結, 解釋, 比較</textarea>
-        <div>
-            <label style="font-weight: bold; font-size: 18px;">每個字倒數 (秒)：</label>
-            <input type="number" id="time-input" value="5" min="2" max="30">
+    <div id="menu-screen">
+        <div class="mc-title-container">
+            <div class="mc-title" id="display-main-title">拼字大師</div>
         </div>
-        <button class="btn-start" onclick="startGame()">▶️ 開始遊戲</button>
+        <br>
+        <button class="btn btn-primary" style="font-size: 28px; padding: 20px 40px;" onclick="showReviewList()">▶️ 開始挑戰</button><br>
+        <button class="btn" onclick="showLogin()">⚙️ 管理頁面</button>
     </div>
 
-    <!-- 遊戲畫面 -->
-    <div id="game-screen" class="panel" style="background: transparent; border: none; box-shadow: none;">
-        <div class="panel" style="width: 100%; padding: 15px;">
-            <div class="stats">
-                <span id="score-display">成功拆除: 0</span>
-                <span id="progress-display">進度: 1/10</span>
+    <div id="review-list-screen" class="hidden">
+        <h1 style="color: #111; text-shadow: 2px 2px 0px #FFF;">請選擇目標方塊 (可多選)</h1>
+        <div class="slots-container" id="target-grid" style="max-width: 800px; margin: 0 auto;"></div>
+        <br>
+        <button class="btn btn-primary hidden" id="start-selected-btn" style="font-size: 24px; padding: 15px 30px;" onclick="startSelectedGame()">▶️ 開始所選挑戰</button>
+        <br><br><button class="btn" onclick="backToMenu()">返回主選單</button>
+    </div>
+
+    <div id="review-detail-screen" class="hidden" style="padding-bottom: 120px;">
+        <div class="detail-main-layout">
+            <div class="target-left-panel">
+                <h1 id="detail-target-title">字</h1>
+                <button class="btn" style="background: #FFF; border-color: #CCC #555 #555 #CCC; border-radius: 0; width: 80px;" onclick="playTargetWordVoice()">🔊</button>
             </div>
-            <div id="timer-container"><div id="fuse-bar"></div></div>
-        </div>
-        
-        <!-- 飄浮的卡通炸彈 -->
-        <div id="bomb-wrapper">
-            <div id="bomb-container" class="drifting">
-                <div class="bomb-body" id="bomb-body">
-                    <div class="bomb-cap"></div>
-                    <div class="bomb-spark" id="bomb-spark">🔥</div>
-                    <div id="word-display">準備</div>
+            
+            <div class="carousel-container">
+                <div id="game-status-msg" class="game-status">請點選下方字塊拼出詞語</div>
+                
+                <div class="phrase-card">
+                    <img id="phrase-current-img" class="phrase-img" src="" alt="提示圖片">
+                    <div class="slots-container" id="answer-slots"></div>
+                    <div class="options-container" id="letter-options"></div>
+
+                    <div id="success-popup" class="popup-overlay hidden">
+                        <div class="popup-box">
+                            <div class="popup-title">✨ 挑戰成功！ ✨</div>
+                            <div class="popup-word" id="popup-word-display">身高</div>
+                            <div class="popup-meaning" id="popup-meaning-display">意思：身體的高度</div>
+                            <div id="popup-reward-display" style="font-size: 22px; color: #8B5A2B; margin-bottom: 25px; font-weight: bold; background: #FFF9E6; border: 4px dashed #DAA520; padding: 10px;"></div>
+                            <button class="btn btn-primary" onclick="nextPhrase()">繼續下一個 ➡️</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 18px; font-weight: bold; margin-top: 15px; background: #FFF; padding: 5px 15px; border: 2px solid #111;" id="phrase-counter">進度: 1 / 2</div>
+                
+                <div id="reward-container" style="display: none; width: 100%; box-sizing: border-box; background: #8B5A2B; border: 4px solid #3E2813; border-top: 8px solid #55AA55; padding: 15px; margin-top: 15px; text-align: left; box-shadow: inset 4px 4px 0px rgba(0,0,0,0.3); color: #FFF;">
+                    <div style="font-size: 20px; font-weight: 900; margin-bottom: 10px; text-shadow: 2px 2px 0px #3E2813;">🎒 獎勵背包</div>
+                    <div id="blocks-display" style="font-size: 24px; min-height: 35px;">收集的方塊: </div>
+                    <div id="items-display" style="font-size: 28px; margin-top: 5px; min-height: 40px;">合成的物品: </div>
                 </div>
             </div>
         </div>
-        
-        <button class="btn-success" onclick="defuseBomb()">✅ 讀音正確 (空白鍵)</button>
+        <br><button class="btn" onclick="showReviewList()">🔙 返回字庫</button>
+
+        <div id="game-hud" style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 50;">
+            <div id="health-bar" style="font-size: 28px; text-shadow: 2px 2px 0px rgba(0,0,0,0.5); margin-bottom: 5px; width: 100%; text-align: left; padding-left: 5px;">❤️❤️❤️❤️❤️</div>
+            <div id="inventory-bar" style="display: flex; gap: 2px; background: #8B5A2B; padding: 5px; border: 4px solid #3E2813; border-top-color: #55AA55;">
+                <div id="inv-slot-0" class="inv-slot"></div>
+                <div id="inv-slot-1" class="inv-slot"></div>
+                <div id="inv-slot-2" class="inv-slot"></div>
+                <div id="inv-slot-3" class="inv-slot"></div>
+                <div id="inv-slot-4" class="inv-slot"></div>
+                <div id="inv-slot-5" class="inv-slot"></div>
+                <div id="inv-slot-6" class="inv-slot"></div>
+                <div id="inv-slot-7" class="inv-slot"></div>
+                <div id="inv-slot-8" class="inv-slot"></div>
+            </div>
+        </div>
     </div>
 
-    <!-- 結果畫面 -->
-    <div id="result-screen" class="panel">
-        <h2 style="font-size: 36px;">遊戲結束！</h2>
-        <h1 id="final-score" style="font-size: 60px; margin: 10px 0; color: #e74c3c;">0</h1>
-        <p id="feedback-msg" style="font-size: 24px; font-weight: bold;"></p>
-        <button class="btn-start" onclick="resetGame()">🔄 重新開始</button>
+    <div id="login-screen" class="hidden">
+        <h1 style="color: #111; text-shadow: 2px 2px 0px #FFF;">管理員登入</h1>
+        <input type="password" id="admin-pw" class="admin-input" style="max-width: 300px; text-align: center;" placeholder="輸入密碼">
+        <br><button class="btn btn-primary" onclick="verifyAdmin()">登入</button>
+        <button class="btn" onclick="backToMenu()">返回</button>
+    </div>
+
+    <div id="admin-screen" class="hidden admin-panel">
+        <h2 style="margin-top:0; border-bottom: 4px solid #555; padding-bottom: 10px;">⚙️ 管理頁面</h2>
+        
+        <div class="editor-section" style="background: #E8F8F5;">
+            <h3 style="margin-top:0; color: #226622;">網頁標題設定</h3>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="admin-title-input" class="admin-input" style="margin-bottom:0;" placeholder="輸入新的網頁標題">
+                <button class="btn btn-primary" onclick="saveTitle()" style="margin: 0; white-space: nowrap;">更新標題</button>
+            </div>
+        </div>
+
+        <h3 style="color: #333;">管理目標字庫</h3>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <input type="text" id="new-target-input" class="admin-input" placeholder="新增目標字 (例：身)" style="margin-bottom:0; flex: 1;">
+            <input type="text" id="new-target-homophone" class="admin-input" placeholder="同音字校正(選填)" style="margin-bottom:0; flex: 1; background:#E8F8F5;">
+            <button class="btn btn-primary" onclick="addNewTarget()" style="margin: 0; white-space: nowrap;">新增目標字</button>
+        </div>
+        <div id="admin-target-list"></div>
+        
+        <br><hr style="border: 2px solid #555;"><br>
+        <button class="btn btn-download" style="width: 100%; margin-left: 0;" onclick="downloadUpdatedHTML()">📥 下載保存最新網頁 (供跨裝置使用)</button>
+        <button class="btn" onclick="backToMenu()" style="width: 100%; margin-left: 0; margin-top: 10px;">返回主選單</button>
+    </div>
+
+    <div id="edit-target-screen" class="hidden admin-panel">
+        <h2 id="edit-title" style="border-bottom: 4px solid #555; padding-bottom: 10px;">編輯詞語：</h2>
+        <div id="edit-phrase-list"></div>
+        
+        <div class="editor-section" style="background: #FFF9E6; border-color: #DAA520;">
+            <h3 style="margin-top:0; color: #B8860B;">➕ 新增詞語</h3>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="new-phrase-text" class="admin-input" placeholder="詞語 (例：身高)">
+                <input type="text" id="new-phrase-homophone" class="admin-input" placeholder="同音字 (選填)" style="background:#E8F8F5;">
+                <input type="text" id="new-phrase-meaning" class="admin-input" placeholder="粵語解釋 (例：身體的高度)">
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                <input type="text" id="new-phrase-img" class="admin-input" placeholder="圖片網址" style="margin-bottom: 0;">
+                <button class="btn" onclick="searchGoogleImage('new-phrase-text')" style="margin: 0; padding: 10px 15px; background: #FFD700; white-space: nowrap;">🔍 找圖</button>
+            </div>
+            <button class="btn btn-primary" onclick="addPhrase()" style="width:100%; margin:0;">儲存新詞語</button>
+        </div>
+        
+        <button class="btn" onclick="backToAdminList()" style="width: 100%; margin-left: 0;">🔙 返回字庫管理</button>
     </div>
 
     <script>
-        let words = [];
-        let currentWordIndex = 0;
-        let score = 0;
-        let timeLimit = 5;
-        let timeLeft = 5;
-        let timerInterval;
-        let isExploded = false;
-
-        const setupScreen = document.getElementById('setup-screen');
-        const gameScreen = document.getElementById('game-screen');
-        const resultScreen = document.getElementById('result-screen');
-        const wordDisplay = document.getElementById('word-display');
-        const bombContainer = document.getElementById('bomb-container');
-        const bombBody = document.getElementById('bomb-body');
-        const bombSpark = document.getElementById('bomb-spark');
-        const fuseBar = document.getElementById('fuse-bar');
+        // === TITLE_START ===
+        let savedAppTitle = null;
+        // === TITLE_END ===
         
-        // 鍵盤空白鍵支援 (治療師專用快捷鍵)
-        document.addEventListener('keydown', function(event) {
-            if (event.code === 'Space' && gameScreen.style.display === 'flex' && !isExploded) {
-                event.preventDefault(); // 防止滾動畫面
-                defuseBomb();
-            }
-        });
+        // === DATA_START ===
+        let savedAppData = null;
+        // === DATA_END ===
 
-        function startGame() {
-            const rawInput = document.getElementById('word-input').value;
-            words = rawInput.split(/[\n,，]+/).map(w => w.trim()).filter(w => w.length > 0);
-            
-            if (words.length === 0) {
-                alert("請輸入至少一個詞彙！");
-                return;
-            }
-            
-            // 打亂詞彙順序
-            for (let i = words.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [words[i], words[j]] = [words[j], words[i]];
-            }
+        // --- 完整資料庫 (包含 30 組真實圖片與粵語定義) ---
+        const defaultData = [
+            { target: "身", phrases: [ 
+                { text: "身高", img: "https://images.unsplash.com/photo-1550634282-3e284ef79564?auto=format&fit=crop&w=400&q=80", meaning: "身體嘅高度" }, 
+                { text: "身形", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80", meaning: "身體嘅形狀同線條" } 
+            ] },
+            { target: "外", phrases: [ 
+                { text: "外衣", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80", meaning: "著喺最出面嘅衫" }, 
+                { text: "外國", img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=400&q=80", meaning: "自己國家以外嘅地方" } 
+            ] },
+            { target: "動", phrases: [ 
+                { text: "動畫", img: "https://images.unsplash.com/photo-1580477667995-15f6f3a74b34?auto=format&fit=crop&w=400&q=80", meaning: "會郁嘅圖畫故事" }, 
+                { text: "動手", img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=400&q=80", meaning: "親自開始做一件事" } 
+            ] },
+            { target: "長", phrases: [ 
+                { text: "長假", img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=400&q=80", meaning: "放好耐嘅假期" }, 
+                { text: "長裙", img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=400&q=80", meaning: "長度去到腳眼嘅裙" } 
+            ] },
+            { target: "衣", phrases: [ 
+                { text: "衣夾", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=400&q=80", meaning: "用嚟夾實啲衫嘅工具" }, 
+                { text: "衣櫃", img: "https://images.unsplash.com/photo-1558882224-cca16673336d?auto=format&fit=crop&w=400&q=80", meaning: "用嚟裝衫嘅櫃" } 
+            ] },
+            { target: "景", phrases: [ 
+                { text: "海景", img: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=400&q=80", meaning: "望到海嘅風景" }, 
+                { text: "夜景", img: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80", meaning: "夜晚嘅風景" } 
+            ] },
+            { target: "事", phrases: [ 
+                { text: "善事", img: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=400&q=80", meaning: "對人有幫助嘅好事" }, 
+                { text: "婚事", img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80", meaning: "結婚嘅事情" } 
+            ] },
+            { target: "工", phrases: [ 
+                { text: "工人", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80", meaning: "做嘢賺人工嘅人" }, 
+                { text: "分工", img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80", meaning: "將啲工作分畀唔同人做" } 
+            ] },
+            { target: "落", phrases: [ 
+                { text: "落淚", img: "https://images.unsplash.com/photo-1516585424559-8bab11619223?auto=format&fit=crop&w=400&q=80", meaning: "流眼淚" }, 
+                { text: "日落", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", meaning: "太陽落山" } 
+            ] },
+            { target: "前", phrases: [ 
+                { text: "前方", img: "https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=400&q=80", meaning: "前面嘅方向" }, 
+                { text: "前日", img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=400&q=80", meaning: "尋日嘅上一日" } 
+            ] },
+            { target: "後", phrases: [ 
+                { text: "後方", img: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=400&q=80", meaning: "後面嘅方向" }, 
+                { text: "後日", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80", meaning: "聽日嘅下一日" } 
+            ] },
+            { target: "面", phrases: [ 
+                { text: "見面", img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=400&q=80", meaning: "面對面相見" }, 
+                { text: "面試", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80", meaning: "見工或者考學校嘅面談" } 
+            ] },
+            { target: "感", phrases: [ 
+                { text: "傷感", img: "https://images.unsplash.com/photo-1494887205043-c5f291293cf6?auto=format&fit=crop&w=400&q=80", meaning: "覺得傷心難過" }, 
+                { text: "好感", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80", meaning: "對人或者事物有好嘅感覺" } 
+            ] },
+            { target: "體", phrases: [ 
+                { text: "身體", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80", meaning: "人或者動物嘅全身" }, 
+                { text: "體型", img: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=400&q=80", meaning: "身體嘅大細同肥瘦" } 
+            ] },
+            { target: "發", phrases: [ 
+                { text: "發財", img: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80", meaning: "賺到好多錢" }, 
+                { text: "發芽", img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=400&q=80", meaning: "植物生出幼苗" } 
+            ] }
+        ];
+        
+        let appData = savedAppData || JSON.parse(localStorage.getItem('ama_mc_data_v3')) || defaultData;
+        let currentAppTitle = savedAppTitle || localStorage.getItem('ama_mc_title') || "拼字大師";
+        
+        let currentEditTargetIndex = -1;
+        let activeTargetIndex = -1, currentPhraseIndex = 0;
+        let selectedTargetIndices = [];
+        let currentSelectionQueueIndex = 0;
+        let shuffledChars = [], userAnswers = [];
+        
+        let currentBlocks = 0; 
+        let unlockedItems = []; 
+        let currentHearts = 5; // 新增：生命值變數
 
-            timeLimit = parseFloat(document.getElementById('time-input').value);
-            currentWordIndex = 0;
-            score = 0;
-            
-            setupScreen.style.display = 'none';
-            resultScreen.style.display = 'none';
-            gameScreen.style.display = 'flex';
-            
-            showNextWord();
+        const mcItemPool = ["💎(鑽石)", "🗡️(鐵劍)", "⛏️(十字鎬)", "🍎(蘋果)", "🏹(弓箭)", "🍖(烤肉)", "🍞(麵包)", "🧪(藥水)", "🛡️(盾牌)", "🔥(火把)", "🛶(小船)", "🛌(床)"];
+
+        // 初始化標題
+        document.getElementById('display-main-title').innerText = currentAppTitle;
+        document.title = currentAppTitle;
+
+        // --- 網頁音效合成器 ---
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode); gainNode.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.type = 'triangle'; osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.1);
+                gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'success') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15); 
+                osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3); 
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.6);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.6);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.2);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+            } else if (type === 'complete') {
+                osc.type = 'triangle'; 
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15); 
+                osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3); 
+                osc.frequency.setValueAtTime(1046.50, audioCtx.currentTime + 0.45); 
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.2);
+                osc.start(); osc.stop(audioCtx.currentTime + 1.2);
+            }
         }
 
-        function showNextWord() {
-            if (currentWordIndex >= words.length) {
-                endGame();
-                return;
-            }
+        // --- 新增：彩帶特效產生器 ---
+        function showConfetti() {
+            const colors = ['#FFD700', '#FF5555', '#55AA55', '#5C94FC', '#FFF'];
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = (Math.random() * 8 + 6) + 'px';
+                confetti.style.height = (Math.random() * 8 + 6) + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-20px';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                document.body.appendChild(confetti);
 
-            isExploded = false;
-            
-            // 重置炸彈視覺
-            bombContainer.className = 'drifting';
-            bombBody.style.background = 'radial-gradient(circle at 35% 35%, #ff4b4b, #8b0000)';
-            bombSpark.style.display = 'block';
-            wordDisplay.className = '';
-            wordDisplay.innerText = words[currentWordIndex];
-            
-            timeLeft = timeLimit;
-            fuseBar.style.width = '100%';
-            fuseBar.style.backgroundColor = '#f1c40f';
-            
-            updateStats();
-            
-            clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 50);
-        }
+                const duration = Math.random() * 2 + 2; 
+                const delay = Math.random() * 0.2;
 
-        function updateTimer() {
-            timeLeft -= 0.05;
-            const percentage = (timeLeft / timeLimit) * 100;
-            fuseBar.style.width = percentage + '%';
+                confetti.animate([
+                    { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate3d(${Math.random() * 200 - 100}px, 100vh, 0) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    delay: delay * 1000,
+                    easing: 'cubic-bezier(.37,0,.63,1)',
+                    fill: 'forwards'
+                });
 
-            // 倒數 30% 時，炸彈開始震動、時間條變紅
-            if (percentage <= 30) {
-                fuseBar.style.backgroundColor = '#e74c3c';
-                bombContainer.classList.add('shaking');
-                bombContainer.classList.remove('drifting');
-            }
-
-            if (timeLeft <= 0) {
-                explodeBomb();
+                setTimeout(() => confetti.remove(), (duration + delay) * 1000);
             }
         }
 
-        function defuseBomb() {
-            clearInterval(timerInterval);
-            score++;
-            currentWordIndex++;
-            showNextWord();
+        // --- 女聲語音引擎 ---
+        if ('speechSynthesis' in window) { window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); }
+
+        function playCantonese(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-HK'; utterance.rate = 0.85; utterance.pitch = 1.25; 
+                const voices = window.speechSynthesis.getVoices();
+                let hkVoices = voices.filter(v => v.lang.includes('zh-HK') || v.lang.includes('HK') || v.lang.includes('yue'));
+                if (hkVoices.length > 0) {
+                    const femaleKeywords = ['sin-ji', 'sinji', 'tracy', 'hiumaan', 'female', '女'];
+                    const maleKeywords = ['danny', 'wanlung', 'male', '男'];
+                    let femaleVoice = hkVoices.find(v => femaleKeywords.some(k => v.name.toLowerCase().includes(k)));
+                    if (!femaleVoice) femaleVoice = hkVoices.find(v => !maleKeywords.some(k => v.name.toLowerCase().includes(k)));
+                    utterance.voice = femaleVoice || hkVoices[0];
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+        function playTargetWordVoice() { 
+            const item = appData[activeTargetIndex];
+            playCantonese(item.targetHomophone || item.target); 
         }
 
-        function explodeBomb() {
-            clearInterval(timerInterval);
-            isExploded = true;
-            fuseBar.style.width = '0%';
-            
-            // 爆炸視覺效果
-            bombContainer.className = ''; // 停止飄浮和震動
-            bombBody.style.background = '#333'; // 炸彈變黑
-            bombSpark.style.display = 'none';
-            wordDisplay.innerHTML = '💥<br>爆炸!';
-            wordDisplay.className = 'explosion-text';
-            
-            // 延遲 1.5 秒後跳下一題
-            setTimeout(() => {
-                currentWordIndex++;
-                showNextWord();
-            }, 1500);
+        function hideAll() { document.querySelectorAll('body > div.hidden, body > div[id$="-screen"]').forEach(div => div.classList.add('hidden')); }
+        function backToMenu() { hideAll(); document.getElementById('menu-screen').classList.remove('hidden'); }
+
+        // --- 新增：更新底部 HUD 顯示 ---
+        function updateHUD() {
+            // 更新生命值
+            let heartsHtml = '';
+            for(let i = 0; i < 5; i++) {
+                heartsHtml += (i < currentHearts) ? '❤️' : '🖤';
+            }
+            const healthBar = document.getElementById('health-bar');
+            if(healthBar) healthBar.innerHTML = heartsHtml;
+
+            // 更新快捷道具欄 (取最新獲得的 9 個物品)
+            const displayItems = unlockedItems.length > 9 ? unlockedItems.slice(-9) : unlockedItems;
+            for(let i = 0; i < 9; i++) {
+                const slot = document.getElementById('inv-slot-' + i);
+                if(slot) {
+                    let icon = '';
+                    if(displayItems[i]) {
+                        icon = displayItems[i].split('(')[0]; // 提取圖示，例如 "💎(鑽石)" -> "💎"
+                    }
+                    slot.innerHTML = icon;
+                }
+            }
         }
 
-        function updateStats() {
-            document.getElementById('score-display').innerText = `成功拆除: ${score}`;
-            document.getElementById('progress-display').innerText = `進度: ${currentWordIndex + 1}/${words.length}`;
+        // --- 學生模式 ---
+        function showReviewList() {
+            hideAll(); document.getElementById('review-list-screen').classList.remove('hidden');
+            selectedTargetIndices = []; // 重置選擇
+            currentHearts = 5; // 每次回到字庫選擇時，重置為 5 顆心
+            updateHUD();
+
+            const startBtn = document.getElementById('start-selected-btn');
+            if(startBtn) startBtn.classList.add('hidden'); // 隱藏開始按鈕
+            
+            const grid = document.getElementById('target-grid'); grid.innerHTML = '';
+            appData.forEach((item, index) => {
+                const box = document.createElement('div');
+                box.className = 'char-block'; box.innerText = item.target;
+                box.onclick = () => { playSound('click'); toggleTargetSelection(index, box); };
+                grid.appendChild(box);
+            });
         }
 
-        function endGame() {
-            gameScreen.style.display = 'none';
-            resultScreen.style.display = 'block';
-            
-            document.getElementById('final-score').innerText = `${score} / ${words.length}`;
-            const msg = document.getElementById('feedback-msg');
-            if (score === words.length) {
-                msg.innerText = "完美通關！反應超快！🌟";
-            } else if (score > words.length / 2) {
-                msg.innerText = "做得好！就差一點點！🍄";
+        function toggleTargetSelection(index, boxElement) {
+            const idx = selectedTargetIndices.indexOf(index);
+            if (idx > -1) {
+                selectedTargetIndices.splice(idx, 1);
+                boxElement.classList.remove('selected');
             } else {
-                msg.innerText = "加油！下次一定能拆除更多炸彈！💪";
+                selectedTargetIndices.push(index);
+                boxElement.classList.add('selected');
+            }
+            
+            const startBtn = document.getElementById('start-selected-btn');
+            if (selectedTargetIndices.length > 0) {
+                startBtn.classList.remove('hidden');
+            } else {
+                startBtn.classList.add('hidden');
             }
         }
 
-        function resetGame() {
-            resultScreen.style.display = 'none';
-            setupScreen.style.display = 'block';
+        function startSelectedGame() {
+            if (selectedTargetIndices.length === 0) return;
+            currentSelectionQueueIndex = 0;
+            openQueuedTarget();
+        }
+
+        function openQueuedTarget() {
+            const targetAppIndex = selectedTargetIndices[currentSelectionQueueIndex];
+            hideAll(); document.getElementById('review-detail-screen').classList.remove('hidden');
+            activeTargetIndex = targetAppIndex; currentPhraseIndex = 0;
+            document.getElementById('detail-target-title').innerText = appData[activeTargetIndex].target;
+            
+            initSpellingGame();
+        }
+
+        function openTargetDetail(index) {
+            // 保留原有函數避免外部參照錯誤，但我們現在主流程改用 openQueuedTarget
+            hideAll(); document.getElementById('review-detail-screen').classList.remove('hidden');
+            activeTargetIndex = index; currentPhraseIndex = 0;
+            document.getElementById('detail-target-title').innerText = appData[index].target;
+            
+            initSpellingGame();
+        }
+
+        function updateRewardUI() {
+            const blocksDiv = document.getElementById('blocks-display');
+            const itemsDiv = document.getElementById('items-display');
+            if(blocksDiv) {
+                let blockStr = "";
+                for(let i=0; i<currentBlocks; i++) blockStr += "🟫 ";
+                blocksDiv.innerText = "收集的方塊: " + (blockStr || "無");
+            }
+            if(itemsDiv) {
+                itemsDiv.innerText = "合成的物品: " + (unlockedItems.join(" ") || "無");
+            }
+            updateHUD(); // 同步更新底部道具欄
+        }
+
+        function initSpellingGame() {
+            const item = appData[activeTargetIndex];
+            userAnswers = []; document.getElementById('success-popup').classList.add('hidden');
+            updateRewardUI();
+
+            if (!item.phrases || item.phrases.length === 0) return;
+            const phrase = item.phrases[currentPhraseIndex];
+            document.getElementById('phrase-current-img').src = phrase.img || "https://placehold.co/400x400/C6C6C6/111?font=montserrat&text=Picture";
+            
+            let correctChars = phrase.text.split('');
+            let optionsPool = [...correctChars];
+            let allDatabaseChars = new Set();
+            appData.forEach(d => d.phrases.forEach(p => p.text.split('').forEach(c => allDatabaseChars.add(c))));
+            ['大','小','上','下','多','少','日','月','天','地','人','心'].forEach(c => allDatabaseChars.add(c));
+            
+            let availableRandomChars = Array.from(allDatabaseChars).filter(c => !correctChars.includes(c));
+            while (optionsPool.length < 6) {
+                let randChar = availableRandomChars[Math.floor(Math.random() * availableRandomChars.length)];
+                if (!optionsPool.includes(randChar)) optionsPool.push(randChar);
+            }
+            optionsPool.sort(() => Math.random() - 0.5);
+            shuffledChars = optionsPool.map(c => ({ char: c, used: false }));
+
+            renderGameBoards();
+            document.getElementById('phrase-counter').innerText = `進度: ${currentPhraseIndex + 1} / ${item.phrases.length}`;
+        }
+
+        function renderGameBoards() {
+            const phrase = appData[activeTargetIndex].phrases[currentPhraseIndex];
+            const slotsContainer = document.getElementById('answer-slots'); slotsContainer.innerHTML = '';
+            for (let i = 0; i < phrase.text.length; i++) {
+                const slot = document.createElement('div'); slot.className = 'char-block empty';
+                if (userAnswers[i] !== undefined) {
+                    slot.className = 'char-block animate-place'; slot.innerText = userAnswers[i];
+                    slot.onclick = () => { playSound('click'); removeCharacter(i); };
+                }
+                slotsContainer.appendChild(slot);
+            }
+            const optionsContainer = document.getElementById('letter-options'); optionsContainer.innerHTML = '';
+            shuffledChars.forEach((item, index) => {
+                const block = document.createElement('div');
+                if (item.used) block.className = 'char-block empty';
+                else { block.className = 'char-block'; block.innerText = item.char; block.onclick = () => { playSound('click'); selectCharacter(index); }; }
+                optionsContainer.appendChild(block);
+            });
+        }
+
+        function selectCharacter(index) {
+            const phrase = appData[activeTargetIndex].phrases[currentPhraseIndex];
+            if (userAnswers.length < phrase.text.length) {
+                shuffledChars[index].used = true; userAnswers.push(shuffledChars[index].char);
+                renderGameBoards();
+                if (userAnswers.length === phrase.text.length) checkSpellingAnswer();
+            }
+        }
+
+        function removeCharacter(slotIndex) {
+            const charToRemove = userAnswers[slotIndex];
+            const found = shuffledChars.find(item => item.char === charToRemove && item.used);
+            if (found) found.used = false;
+            userAnswers.splice(slotIndex, 1); renderGameBoards();
+        }
+
+        function checkSpellingAnswer() {
+            const phrase = appData[activeTargetIndex].phrases[currentPhraseIndex];
+            if (userAnswers.join('') === phrase.text) {
+                playSound('success');
+                document.getElementById('popup-word-display').innerText = phrase.text;
+                document.getElementById('popup-meaning-display').innerText = `意思：${phrase.meaning || '暫無提示'}`;
+                
+                // 核心邏輯確認區：已嚴格鎖定您的需求
+                currentBlocks++; // 規則1：回答一題，給予1個方塊
+                let newlyUnlocked = null;
+                if (currentBlocks >= 2) { // 規則2：回答2題（即收集滿2個方塊），才會有合成獎勵物件
+                    currentBlocks -= 2;   // 消耗這2個方塊進行合成
+                    newlyUnlocked = mcItemPool[Math.floor(Math.random() * mcItemPool.length)];
+                    unlockedItems.push(newlyUnlocked);
+                }
+                updateRewardUI(); // 這會同時呼叫 updateHUD 幫你更新底部欄
+                
+                let rewardMsg = "獲得 1 個方塊！<div style='font-size: 70px; line-height: 1; margin: 10px 0; animation: placeBlock 0.3s ease-out;'>🟫</div>";
+                if (newlyUnlocked) {
+                    rewardMsg += `🎉 2 個方塊成功合成了：<div style='font-size: 90px; line-height: 1; margin: 15px 0; animation: placeBlock 0.5s ease-out; text-shadow: 0 0 15px #FFD700;'>${newlyUnlocked}</div>`;
+                }
+                document.getElementById('popup-reward-display').innerHTML = rewardMsg;
+
+                document.getElementById('success-popup').classList.remove('hidden');
+                
+                // 語音回饋：讀出同音字（如果有）和定義
+                const spokenText = phrase.homophone || phrase.text;
+                const explanation = phrase.meaning ? `${spokenText}，${phrase.meaning}。` : `${spokenText}。`;
+                playCantonese(explanation);
+            } else {
+                // 答錯邏輯修改：扣除心心
+                currentHearts--;
+                if(currentHearts < 0) currentHearts = 0; // 確保不會低於0
+                updateHUD();
+
+                playSound('wrong');
+                const slots = document.querySelectorAll('#answer-slots .char-block');
+                slots.forEach(s => s.classList.add('animate-wrong'));
+                playCantonese("唔啱，再試下啦。");
+                setTimeout(() => { userAnswers = []; shuffledChars.forEach(item => item.used = false); renderGameBoards(); }, 1000);
+            }
+        }
+
+        function nextPhrase() {
+            if (currentPhraseIndex < appData[activeTargetIndex].phrases.length - 1) { 
+                currentPhraseIndex++; 
+                initSpellingGame(); 
+            } else {
+                // 當前字詞的所有挑戰已完成，檢查是否有下一個被選擇的目標
+                currentSelectionQueueIndex++;
+                if (currentSelectionQueueIndex < selectedTargetIndices.length) {
+                    openQueuedTarget(); // 開啟下一個排隊中的挑戰
+                } else {
+                    showReviewList(); // 全部完成，返回字庫選單
+                    playSound('complete'); // 新增：播放通關音效
+                    showConfetti(); // 新增：觸發滿屏彩帶
+                }
+            }
+        }
+
+        // --- 管理頁面 ---
+        function showLogin() { hideAll(); document.getElementById('login-screen').classList.remove('hidden'); document.getElementById('admin-pw').value=''; }
+        function verifyAdmin() { if(document.getElementById('admin-pw').value==="0303") showAdminList(); else alert("密碼錯誤"); }
+        
+        function showAdminList() {
+            hideAll(); document.getElementById('admin-screen').classList.remove('hidden');
+            document.getElementById('admin-title-input').value = currentAppTitle; // 載入目前標題
+            const list = document.getElementById('admin-target-list'); list.innerHTML = '';
+            
+            appData.forEach((item, index) => {
+                const row = document.createElement('div'); row.style = "display:flex; justify-content:space-between; padding:10px; border-bottom:2px solid #555; align-items:center;";
+                row.innerHTML = `<span style="font-size:20px; font-weight:bold;">${item.target} (含 ${item.phrases.length} 詞)</span>
+                    <div><button class="btn btn-primary" style="padding:5px 10px; font-size:16px; margin:0;" onclick="openEditTarget(${index})">編輯字詞</button>
+                    <button class="btn" style="padding:5px 10px; font-size:16px; margin:0; background:#FF5555; color:#FFF;" onclick="deleteTarget(${index})">刪除</button></div>`;
+                list.appendChild(row);
+            });
+            localStorage.setItem('ama_mc_data_v3', JSON.stringify(appData));
+        }
+
+        function saveTitle() {
+            const newTitle = document.getElementById('admin-title-input').value.trim();
+            if(newTitle) {
+                currentAppTitle = newTitle;
+                document.getElementById('display-main-title').innerText = currentAppTitle;
+                document.title = currentAppTitle;
+                localStorage.setItem('ama_mc_title', currentAppTitle);
+                alert("標題更新成功！");
+            }
+        }
+        
+        function addNewTarget() {
+            const w = document.getElementById('new-target-input').value.trim();
+            const h = document.getElementById('new-target-homophone').value.trim();
+            if(w && !appData.some(i=>i.target===w)) { 
+                appData.push({target:w, targetHomophone:h, phrases:[]}); 
+                document.getElementById('new-target-input').value=''; 
+                document.getElementById('new-target-homophone').value='';
+                showAdminList(); 
+            }
+        }
+        function deleteTarget(index) { if(confirm("確定刪除？")) { appData.splice(index, 1); showAdminList(); } }
+
+        function openEditTarget(index) {
+            currentEditTargetIndex = index; hideAll(); document.getElementById('edit-target-screen').classList.remove('hidden');
+            renderEditPhraseList();
+        }
+        function backToAdminList() { currentEditTargetIndex = -1; showAdminList(); }
+
+        // --- 全新 Inline 即時編輯詞語與目標字同音字 ---
+        function saveTargetHomophone() {
+            const val = document.getElementById('edit-target-homophone').value.trim();
+            appData[currentEditTargetIndex].targetHomophone = val;
+            localStorage.setItem('ama_mc_data_v3', JSON.stringify(appData));
+            alert("目標字同音字已儲存！");
+        }
+
+        function renderEditPhraseList() {
+            const item = appData[currentEditTargetIndex];
+            document.getElementById('edit-title').innerHTML = `編輯： ${item.target}
+                <div style="font-size: 16px; font-weight: normal; margin-top: 10px; display: flex; gap: 10px; align-items: center;">
+                    <span style="white-space: nowrap;">目標字同音字(校正讀音):</span>
+                    <input type="text" id="edit-target-homophone" class="admin-input" value="${item.targetHomophone || ''}" style="margin: 0; max-width: 200px; background:#E8F8F5;" placeholder="例如: 身">
+                    <button class="btn btn-primary" style="padding: 5px 10px; margin: 0;" onclick="saveTargetHomophone()">💾 儲存</button>
+                </div>`;
+            const list = document.getElementById('edit-phrase-list'); list.innerHTML = '';
+            
+            item.phrases.forEach((phrase, i) => {
+                const row = document.createElement('div'); row.className = 'editor-section';
+                row.innerHTML = `
+                    <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:flex-start;">
+                        <img src="${phrase.img || 'https://placehold.co/400x400/C6C6C6/111?font=montserrat&text=Picture'}" style="width:100px; height:100px; object-fit:cover; border:4px solid #555;">
+                        <div style="flex:1; min-width:300px; display:flex; flex-direction:column; gap:8px;">
+                            <div style="display:flex; gap:10px;">
+                                <input type="text" id="inline-text-${i}" class="admin-input" value="${phrase.text}" style="flex:1; margin:0;" placeholder="詞語">
+                                <input type="text" id="inline-homophone-${i}" class="admin-input" value="${phrase.homophone||''}" style="flex:1; margin:0; background:#E8F8F5;" placeholder="同音字(選填)">
+                                <input type="text" id="inline-mean-${i}" class="admin-input" value="${phrase.meaning||''}" style="flex:2; margin:0;" placeholder="粵語定義">
+                            </div>
+                            <div style="display:flex; gap:10px; align-items:center;">
+                                <input type="text" id="inline-img-${i}" class="admin-input" value="${phrase.img||''}" style="flex:1; margin:0;" placeholder="圖片網址 URL">
+                                <button class="btn" style="padding:10px 15px; margin:0; background:#FFD700; color:#111; white-space:nowrap;" onclick="searchGoogleImage('inline-text-${i}')">🔍 找圖</button>
+                            </div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:10px;">
+                            <button class="btn btn-primary" style="padding:10px; margin:0;" onclick="saveInlinePhrase(${i})">💾 儲存</button>
+                            <button class="btn" style="padding:10px; margin:0; background:#FF5555; color:#FFF;" onclick="deletePhrase(${i})">🗑️ 刪除</button>
+                        </div>
+                    </div>`;
+                list.appendChild(row);
+            });
+        }
+
+        function searchGoogleImage(inputId) {
+            const keyword = document.getElementById(inputId).value.trim();
+            if (!keyword) return alert("請先輸入詞語再找圖！");
+            window.open(`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(keyword)}`, '_blank');
+        }
+
+        function saveInlinePhrase(i) {
+            const text = document.getElementById(`inline-text-${i}`).value.trim();
+            const homo = document.getElementById(`inline-homophone-${i}`).value.trim();
+            const mean = document.getElementById(`inline-mean-${i}`).value.trim();
+            const img = document.getElementById(`inline-img-${i}`).value.trim();
+            if(!text) return alert("詞語不能為空！");
+            appData[currentEditTargetIndex].phrases[i] = { text:text, homophone:homo, meaning:mean, img:img };
+            localStorage.setItem('ama_mc_data_v3', JSON.stringify(appData));
+            renderEditPhraseList(); // 重新渲染以更新左側圖片預覽
+        }
+        
+        function addPhrase() {
+            const t = document.getElementById('new-phrase-text').value.trim();
+            const h = document.getElementById('new-phrase-homophone').value.trim();
+            const m = document.getElementById('new-phrase-meaning').value.trim();
+            const img = document.getElementById('new-phrase-img').value.trim();
+            if(!t) return alert("詞語不能為空！");
+            appData[currentEditTargetIndex].phrases.push({text:t, homophone:h, meaning:m, img:img});
+            localStorage.setItem('ama_mc_data_v3', JSON.stringify(appData));
+            
+            // 清空新增欄位
+            document.getElementById('new-phrase-text').value='';
+            document.getElementById('new-phrase-homophone').value='';
+            document.getElementById('new-phrase-meaning').value='';
+            document.getElementById('new-phrase-img').value='';
+            renderEditPhraseList();
+        }
+        
+        function deletePhrase(i) { 
+            if(confirm("刪除此詞？")){ 
+                appData[currentEditTargetIndex].phrases.splice(i,1); 
+                localStorage.setItem('ama_mc_data_v3', JSON.stringify(appData)); 
+                renderEditPhraseList(); 
+            } 
+        }
+
+        // --- 核心功能：下載最新 HTML (跨裝置保存) ---
+        function downloadUpdatedHTML() {
+            // 先暫時切換回主畫面，確保下載後的網頁一打開是主選單
+            hideAll();
+            document.getElementById('menu-screen').classList.remove('hidden');
+
+            // 準備最新的數據字串
+            let dataStr = `// === DATA_START ===\n        let savedAppData = ${JSON.stringify(appData)};\n        // === DATA_END ===`;
+            let titleStr = `// === TITLE_START ===\n        let savedAppTitle = ${JSON.stringify(currentAppTitle)};\n        // === TITLE_END ===`;
+
+            // 抓取整個 HTML 並替換數據區塊
+            let currentHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            currentHTML = currentHTML.replace(/\/\/ === DATA_START ===[\s\S]*?\/\/ === DATA_END ===/, dataStr);
+            currentHTML = currentHTML.replace(/\/\/ === TITLE_START ===[\s\S]*?\/\/ === TITLE_END ===/, titleStr);
+
+            // 建立下載連結
+            const blob = new Blob([currentHTML], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "言語能力提昇_拼字大師.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // 恢復管理頁面畫面
+            hideAll();
+            document.getElementById('admin-screen').classList.remove('hidden');
+            alert("✅ 下載成功！\n你可以將此下載的 HTML 檔案傳送到學校電腦或 iPad 上開啟，所有最新的圖片、字詞和標題都會同步保留！");
         }
     </script>
 </body>
