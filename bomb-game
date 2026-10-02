@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario風 - 粵語讀音炸彈遊戲</title>
+    <style>
+        /* 基礎設定與字體 */
+        body {
+            font-family: "Microsoft JhengHei", "PingFang HK", sans-serif;
+            background-color: #ffffff; /* 純白背景 */
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* ----- Mario 風格裝飾元素 (絕對定位在四周) ----- */
+        .decor {
+            position: absolute;
+            z-index: -1;
+            user-select: none;
+        }
+        .cloud { font-size: 60px; top: 10%; left: 15%; animation: floatSlow 8s infinite alternate ease-in-out; }
+        .cloud2 { font-size: 80px; top: 15%; right: 10%; animation: floatSlow 10s infinite alternate-reverse ease-in-out; }
+        .star { font-size: 50px; top: 30%; left: 8%; animation: spin 4s infinite linear; }
+        .mushroom { font-size: 50px; bottom: 20%; right: 15%; animation: bounce 2s infinite; }
+        
+        /* CSS 繪製水管與磚塊 */
+        .pipe {
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(to right, #2ecc71, #27ae60, #2ecc71);
+            border: 4px solid #000;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            z-index: -1;
+        }
+        .pipe::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            width: 92px;
+            height: 20px;
+            background: linear-gradient(to right, #2ecc71, #27ae60, #2ecc71);
+            border: 4px solid #000;
+            border-radius: 5px;
+        }
+        
+        .blocks {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2px;
+            z-index: -1;
+        }
+        .brick {
+            width: 50px; height: 50px;
+            background-color: #d35400;
+            border: 3px solid #000;
+            box-shadow: inset -4px -4px 0 rgba(0,0,0,0.3), inset 4px 4px 0 rgba(255,255,255,0.4);
+        }
+        .question-block {
+            width: 50px; height: 50px;
+            background-color: #f1c40f;
+            border: 3px solid #000;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 30px; color: #d35400;
+            box-shadow: inset -4px -4px 0 rgba(0,0,0,0.2), inset 4px 4px 0 rgba(255,255,255,0.6);
+            animation: pulseBlock 1.5s infinite;
+        }
+
+        /* ----- 介面面板設定 ----- */
+        .panel {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            border: 5px solid #000;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            z-index: 10;
+        }
+        #game-screen, #result-screen { display: none; }
+        
+        textarea {
+            width: 90%; height: 80px; margin-bottom: 15px;
+            font-size: 16px; padding: 10px; border: 3px solid #ccc; border-radius: 10px;
+        }
+        input[type="number"] { font-size: 18px; padding: 5px; width: 60px; text-align: center; border: 3px solid #ccc; border-radius: 5px; }
+        
+        /* Mario 風格按鈕 */
+        button {
+            font-size: 22px; padding: 12px 30px; margin: 10px; cursor: pointer;
+            border: 4px solid #000; border-radius: 10px; font-weight: bold;
+            box-shadow: 4px 4px 0 #000;
+            transition: all 0.1s;
+        }
+        button:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0 #000; }
+        .btn-start { background-color: #e74c3c; color: white; }
+        .btn-success { background-color: #3498db; color: white; width: 80%; font-size: 24px; }
+        
+        /* ----- 卡通炸彈與動畫 ----- */
+        #bomb-wrapper {
+            margin: 40px 0;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drifting {
+            /* 飄逸動畫 */
+            animation: floatBomb 4s infinite ease-in-out;
+        }
+
+        /* 炸彈本體：包裹詞語 */
+        .bomb-body {
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle at 35% 35%, #ff4b4b, #8b0000); /* 立體感紅色炸彈 */
+            border-radius: 50%;
+            border: 8px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset -15px -15px 0 rgba(0,0,0,0.3), 10px 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* 炸彈的蓋子與引線 */
+        .bomb-cap {
+            position: absolute;
+            top: -25px;
+            width: 60px;
+            height: 25px;
+            background-color: #333;
+            border: 4px solid #000;
+            border-radius: 5px;
+        }
+        .bomb-spark {
+            position: absolute;
+            top: -60px;
+            font-size: 40px;
+            animation: burn 0.5s infinite alternate;
+        }
+
+        /* 顯示的目標詞語 */
+        #word-display {
+            font-size: 55px;
+            font-weight: 900;
+            color: white;
+            text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            letter-spacing: 2px;
+            z-index: 5;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* 時間條 */
+        #timer-container {
+            width: 100%; height: 30px; background-color: #ddd;
+            border: 4px solid #000; border-radius: 15px; margin: 20px 0; overflow: hidden;
+        }
+        #fuse-bar {
+            height: 100%; width: 100%; background-color: #f1c40f;
+            transition: width 0.1s linear, background-color 0.3s;
+        }
+
+        /* 動畫庫 */
+        @keyframes floatBomb {
+            0% { transform: translate(0px, 0px) rotate(-3deg); }
+            25% { transform: translate(15px, -15px) rotate(3deg); }
+            50% { transform: translate(0px, -25px) rotate(-1deg); }
+            75% { transform: translate(-15px, -10px) rotate(2deg); }
+            100% { transform: translate(0px, 0px) rotate(-3deg); }
+        }
+        @keyframes burn {
+            0% { transform: scale(0.8) rotate(-10deg); filter: hue-rotate(0deg); }
+            100% { transform: scale(1.2) rotate(10deg); filter: hue-rotate(45deg); }
+        }
+        @keyframes shakeFast {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-5px, 5px); }
+            50% { transform: translate(5px, -5px); }
+            75% { transform: translate(-5px, -5px); }
+        }
+        @keyframes floatSlow {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes pulseBlock {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .shaking { animation: shakeFast 0.1s infinite !important; }
+        .explosion-text { font-size: 80px !important; color: #ffeb3b !important; }
+        
+        .stats { display: flex; justify-content: space-between; font-size: 20px; font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Mario 風格背景裝飾 -->
+    <div class="decor cloud">☁️</div>
+    <div class="decor cloud2">☁️</div>
+    <div class="decor star">⭐</div>
+    <div class="decor mushroom">🍄</div>
+    <div class="pipe"></div>
+    <div class="blocks">
+        <div class="brick"></div>
+        <div class="question-block">?</div>
+        <div class="brick"></div>
+    </div>
+
+    <!-- 設定畫面 -->
+    <div id="setup-screen" class="panel">
+        <h2 style="color: #e74c3c; font-size: 32px; margin-top: 0;">💥 讀音炸彈遊戲</h2>
+        <p style="font-weight: bold;">請輸入訓練詞彙（以逗號或換行分隔）：</p>
+        <textarea id="word-input">形態意識, 構詞, 閱讀理解, 聯想, 討論, 分析, 總結, 解釋, 比較</textarea>
+        <div>
+            <label style="font-weight: bold; font-size: 18px;">每個字倒數 (秒)：</label>
+            <input type="number" id="time-input" value="5" min="2" max="30">
+        </div>
+        <button class="btn-start" onclick="startGame()">▶️ 開始遊戲</button>
+    </div>
+
+    <!-- 遊戲畫面 -->
+    <div id="game-screen" class="panel" style="background: transparent; border: none; box-shadow: none;">
+        <div class="panel" style="width: 100%; padding: 15px;">
+            <div class="stats">
+                <span id="score-display">成功拆除: 0</span>
+                <span id="progress-display">進度: 1/10</span>
+            </div>
+            <div id="timer-container"><div id="fuse-bar"></div></div>
+        </div>
+        
+        <!-- 飄浮的卡通炸彈 -->
+        <div id="bomb-wrapper">
+            <div id="bomb-container" class="drifting">
+                <div class="bomb-body" id="bomb-body">
+                    <div class="bomb-cap"></div>
+                    <div class="bomb-spark" id="bomb-spark">🔥</div>
+                    <div id="word-display">準備</div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-success" onclick="defuseBomb()">✅ 讀音正確 (空白鍵)</button>
+    </div>
+
+    <!-- 結果畫面 -->
+    <div id="result-screen" class="panel">
+        <h2 style="font-size: 36px;">遊戲結束！</h2>
+        <h1 id="final-score" style="font-size: 60px; margin: 10px 0; color: #e74c3c;">0</h1>
+        <p id="feedback-msg" style="font-size: 24px; font-weight: bold;"></p>
+        <button class="btn-start" onclick="resetGame()">🔄 重新開始</button>
+    </div>
+
+    <script>
+        let words = [];
+        let currentWordIndex = 0;
+        let score = 0;
+        let timeLimit = 5;
+        let timeLeft = 5;
+        let timerInterval;
+        let isExploded = false;
+
+        const setupScreen = document.getElementById('setup-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const wordDisplay = document.getElementById('word-display');
+        const bombContainer = document.getElementById('bomb-container');
+        const bombBody = document.getElementById('bomb-body');
+        const bombSpark = document.getElementById('bomb-spark');
+        const fuseBar = document.getElementById('fuse-bar');
+        
+        // 鍵盤空白鍵支援 (治療師專用快捷鍵)
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' && gameScreen.style.display === 'flex' && !isExploded) {
+                event.preventDefault(); // 防止滾動畫面
+                defuseBomb();
+            }
+        });
+
+        function startGame() {
+            const rawInput = document.getElementById('word-input').value;
+            words = rawInput.split(/[\n,，]+/).map(w => w.trim()).filter(w => w.length > 0);
+            
+            if (words.length === 0) {
+                alert("請輸入至少一個詞彙！");
+                return;
+            }
+            
+            // 打亂詞彙順序
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]];
+            }
+
+            timeLimit = parseFloat(document.getElementById('time-input').value);
+            currentWordIndex = 0;
+            score = 0;
+            
+            setupScreen.style.display = 'none';
+            resultScreen.style.display = 'none';
+            gameScreen.style.display = 'flex';
+            
+            showNextWord();
+        }
+
+        function showNextWord() {
+            if (currentWordIndex >= words.length) {
+                endGame();
+                return;
+            }
+
+            isExploded = false;
+            
+            // 重置炸彈視覺
+            bombContainer.className = 'drifting';
+            bombBody.style.background = 'radial-gradient(circle at 35% 35%, #ff4b4b, #8b0000)';
+            bombSpark.style.display = 'block';
+            wordDisplay.className = '';
+            wordDisplay.innerText = words[currentWordIndex];
+            
+            timeLeft = timeLimit;
+            fuseBar.style.width = '100%';
+            fuseBar.style.backgroundColor = '#f1c40f';
+            
+            updateStats();
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 50);
+        }
+
+        function updateTimer() {
+            timeLeft -= 0.05;
+            const percentage = (timeLeft / timeLimit) * 100;
+            fuseBar.style.width = percentage + '%';
+
+            // 倒數 30% 時，炸彈開始震動、時間條變紅
+            if (percentage <= 30) {
+                fuseBar.style.backgroundColor = '#e74c3c';
+                bombContainer.classList.add('shaking');
+                bombContainer.classList.remove('drifting');
+            }
+
+            if (timeLeft <= 0) {
+                explodeBomb();
+            }
+        }
+
+        function defuseBomb() {
+            clearInterval(timerInterval);
+            score++;
+            currentWordIndex++;
+            showNextWord();
+        }
+
+        function explodeBomb() {
+            clearInterval(timerInterval);
+            isExploded = true;
+            fuseBar.style.width = '0%';
+            
+            // 爆炸視覺效果
+            bombContainer.className = ''; // 停止飄浮和震動
+            bombBody.style.background = '#333'; // 炸彈變黑
+            bombSpark.style.display = 'none';
+            wordDisplay.innerHTML = '💥<br>爆炸!';
+            wordDisplay.className = 'explosion-text';
+            
+            // 延遲 1.5 秒後跳下一題
+            setTimeout(() => {
+                currentWordIndex++;
+                showNextWord();
+            }, 1500);
+        }
+
+        function updateStats() {
+            document.getElementById('score-display').innerText = `成功拆除: ${score}`;
+            document.getElementById('progress-display').innerText = `進度: ${currentWordIndex + 1}/${words.length}`;
+        }
+
+        function endGame() {
+            gameScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+            
+            document.getElementById('final-score').innerText = `${score} / ${words.length}`;
+            const msg = document.getElementById('feedback-msg');
+            if (score === words.length) {
+                msg.innerText = "完美通關！反應超快！🌟";
+            } else if (score > words.length / 2) {
+                msg.innerText = "做得好！就差一點點！🍄";
+            } else {
+                msg.innerText = "加油！下次一定能拆除更多炸彈！💪";
+            }
+        }
+
+        function resetGame() {
+            resultScreen.style.display = 'none';
+            setupScreen.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
