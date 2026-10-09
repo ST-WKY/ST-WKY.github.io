@@ -1,5 +1,43 @@
 <!DOCTYPE html>
-<html lang="zh-HK"><head>
+<html lang="en"><head>
+  
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+    <script src="https://cpwebassets.codepen.io/assets/packs/js/authorizeDataCapture-ed3d4ec65f15225e39df.js"></script>
+
+  
+
+  <title>test</title>
+
+    <link rel="canonical" href="https://codepen.io/STgame/pen/MYJQBeE">
+  
+  
+  
+  
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.1336.0" data-gr-ext-installed="">
+  
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title id="pageTitle">語素自學詞典</title>
@@ -1324,8 +1362,8 @@
       }
     }
   </style>
-</head>
-<body>
+
+
 
   <!-- 全屏靜態 Mario 天空與靜止像素雲朵背景 -->
   <div class="mario-sky-bg" aria-hidden="true">
@@ -1453,13 +1491,13 @@
           </div>
 
           <!-- 10 格儲物欄網格 (5x2)，內部放置小木磚 -->
-          <div class="mc-inv-grid" id="mcInvGrid"><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「動」字">動</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「後」字">後</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「前」字">前</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「物」字">物</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「家」字">家</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「感」字">感</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「景」字">景</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「外」字">外</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「滿」字">滿</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「子」字">子</button></div></div>
+          <div class="mc-inv-grid" id="mcInvGrid"><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「物」字">物</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「工」字">工</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「長」字">長</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「衣」字">衣</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「光」字">光</button></div><div class="mc-inv-slot"></div><div class="mc-inv-slot"></div><div class="mc-inv-slot"></div><div class="mc-inv-slot"></div><div class="mc-inv-slot"></div></div>
 
           <!-- 分頁控制列 -->
           <div class="mc-inv-pagination">
             <button type="button" class="mc-page-btn" id="prevPageBtn" onclick="changeChestPage(-1)" disabled="">◀ 上一頁</button>
-            <span class="mc-page-indicator" id="pageIndicator">第 1 / 4 頁</span>
-            <button type="button" class="mc-page-btn" id="nextPageBtn" onclick="changeChestPage(1)">下一頁 ▶</button>
+            <span class="mc-page-indicator" id="pageIndicator">第 1 / 1 頁</span>
+            <button type="button" class="mc-page-btn" id="nextPageBtn" onclick="changeChestPage(1)" disabled="">下一頁 ▶</button>
           </div>
         </div>
       </div>
@@ -1474,14 +1512,14 @@
 
       <div class="target-hero">
         <div class="target-char-row">
-          <span class="target-char" id="learnChar">前</span>
+          <span class="target-char" id="learnChar">光</span>
           <button class="speaker-btn" title="朗讀目標字" onclick="speakTargetChar()">🔊</button>
         </div>
       </div>
 
       <div class="examples-heading">🌟 日常詞語例子：</div>
       <div class="example-cards" id="exampleCards"><div class="example-card">
-          <div class="flip-card-container">
+          <div class="flip-card-container flipped">
             <div class="flip-card-inner">
               <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
               <div class="flip-card-front" title="翻開圖片">
@@ -1501,12 +1539,12 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400" class="example-img" alt="前面" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%89%8D%E9%9D%A2'">
+                <img src="https://i0.wp.com/hl-life.com/wp-content/uploads/2026/08/ChatGPT-Image-2026%E5%B9%B48%E6%9C%8817%E6%97%A5-%E4%B8%8B%E5%8D%8802_09_20.jpg?w=1290&amp;ssl=1" class="example-img" alt="光亮" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%85%89%E4%BA%AE'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">前面</span>
+            <span class="example-word">光亮</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div><div class="example-card">
@@ -1530,12 +1568,12 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?w=400" class="example-img" alt="之前" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E4%B9%8B%E5%89%8D'">
+                <img src="https://cn.cdn-news.org/WebView/GetMedia.ashx?PK=0000000000672d52c315a6339acfc941ae995dc9d6ac8ae7&amp;VideoSize=3" class="example-img" alt="光明" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%85%89%E6%98%8E'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">之前</span>
+            <span class="example-word">光明</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div><div class="example-card">
@@ -1559,12 +1597,12 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://placehold.co/400x300/5C94FC/ffffff?text=%E4%BB%A5%E5%89%8D" class="example-img" alt="以前" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E4%BB%A5%E5%89%8D'">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkNQo5P51zw2o1GRS75jX_10Pim95-ypzk78NpYLpiKkUWmwI5-MuR_ofY&amp;s=10" class="example-img" alt="光線" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%85%89%E7%B7%9A'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">以前</span>
+            <span class="example-word">光線</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div><div class="example-card">
@@ -1588,12 +1626,12 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400" class="example-img" alt="從前" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%BE%9E%E5%89%8D'">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa1N8-lvEBtwP8y8so-eqpoHsT_JOqhfngmZ5H0RnkOQ&amp;s=10" class="example-img" alt="星光" title="放大圖片" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E6%98%9F%E5%85%89'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">從前</span>
+            <span class="example-word">星光</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div></div>
@@ -1623,12 +1661,12 @@
 
         <!-- 模式：選擇題區塊 (利用 flex order 在 mc 模式下會被排到圖片上方) -->
         <div id="mcQuizArea" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-          <div class="mc-choices-container" id="mcChoicesContainer"><button type="button" class="mc-option-btn">1. 前方</button><button type="button" class="mc-option-btn">2. 錢方</button><button type="button" class="mc-option-btn wrong-choice" disabled="">3. 煎方</button></div>
+          <div class="mc-choices-container" id="mcChoicesContainer"><button type="button" class="mc-option-btn">1. 燈光</button><button type="button" class="mc-option-btn">2. 燈江</button><button type="button" class="mc-option-btn">3. 燈先</button></div>
         </div>
 
         <!-- 測試詞配圖（無點擊放大功能；iPad與電腦版自動隨屏幕放大） -->
         <div class="quiz-img-box" id="quizImgBox">
-          <img id="quizImg" class="quiz-img" src="https://images.unsplash.com/photo-1470246973918-29a93221c455?w=400" alt="提示圖">
+          <img id="quizImg" class="quiz-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKMvWoXBqAcGMpNMpQMvoScYq5h8FS1ytbQaw9nbgU9TF3BtsMkdk0gmSC&amp;s=10" alt="提示圖">
         </div>
 
         <!-- 模式：拼字成詞區塊 -->
@@ -1655,10 +1693,10 @@
   <div class="lightbox-overlay" id="lightboxModal" onclick="closeLightbox(event)">
     <div class="lightbox-box" onclick="event.stopPropagation()">
       <div class="lightbox-caption">
-        <span id="lightboxCaption"></span>
+        <span id="lightboxCaption">光亮</span>
         <button class="speaker-btn-sm" id="lightboxSpeakerBtn" title="朗讀詞語">🔊</button>
       </div>
-      <img id="lightboxImg" class="lightbox-img" src="" alt="放大圖片">
+      <img id="lightboxImg" class="lightbox-img" src="https://i0.wp.com/hl-life.com/wp-content/uploads/2026/08/ChatGPT-Image-2026%E5%B9%B48%E6%9C%8817%E6%97%A5-%E4%B8%8B%E5%8D%8802_09_20.jpg?w=1290&amp;ssl=1" alt="放大圖片">
       <button class="back-btn" style="margin-top:16px;" onclick="closeLightbox()">❌ 關閉放大圖</button>
     </div>
   </div>
@@ -1775,10 +1813,10 @@
             <th style="width:130px;">操作</th>
           </tr>
         </thead>
-        <tbody id="adminTableBody"><tr>
+        <tbody id="adminTableBody"><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(0)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(0)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">動</b></td>
@@ -1788,10 +1826,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(0)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(0)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(1)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(1)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">後</b></td>
@@ -1801,10 +1839,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(1)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(1)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(2)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(2)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">前</b></td>
@@ -1821,16 +1859,16 @@
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">物</b></td>
-          <td>物體、物件、舊物、廢物（共 4 個）</td>
+          <td>物體、物件、舊物、廢物（共 3 個）</td>
           <td><b>寶物</b> <span style="font-size:13px; color:#555;">(同音:寶勿 / 形近:寶牛)</span><br><b>生物</b> <span style="font-size:13px; color:#555;">(同音:生勿 / 形近:生牛)</span><br><b>死物</b> <span style="font-size:13px; color:#555;">(同音:死勿 / 形近:死牛)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(3)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(3)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(4)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(4)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">家</b></td>
@@ -1840,10 +1878,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(4)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(4)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(5)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(5)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">感</b></td>
@@ -1853,10 +1891,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(5)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(5)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(6)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(6)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">景</b></td>
@@ -1866,10 +1904,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(6)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(6)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(7)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(7)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">外</b></td>
@@ -1879,10 +1917,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(7)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(7)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(8)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(8)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">滿</b></td>
@@ -1892,10 +1930,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(8)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(8)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(9)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(9)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">子</b></td>
@@ -1905,10 +1943,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(9)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(9)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(10)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(10)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">道</b></td>
@@ -1918,10 +1956,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(10)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(10)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(11)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(11)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">空</b></td>
@@ -1931,10 +1969,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(11)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(11)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(12)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(12)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">事</b></td>
@@ -1957,10 +1995,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(13)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(13)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(14)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(14)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">課</b></td>
@@ -1970,10 +2008,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(14)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(14)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(15)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(15)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">發</b></td>
@@ -1983,10 +2021,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(15)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(15)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(16)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(16)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">法</b></td>
@@ -2022,10 +2060,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(18)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(18)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(19)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(19)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">場</b></td>
@@ -2035,10 +2073,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(19)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(19)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(20)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(20)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">圓</b></td>
@@ -2048,10 +2086,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(20)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(20)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(21)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(21)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">員</b></td>
@@ -2061,10 +2099,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(21)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(21)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(22)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(22)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">醫</b></td>
@@ -2074,10 +2112,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(22)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(22)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(23)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(23)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">糕</b></td>
@@ -2087,10 +2125,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(23)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(23)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(24)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(24)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">膏</b></td>
@@ -2100,10 +2138,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(24)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(24)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(25)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(25)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">聲</b></td>
@@ -2126,10 +2164,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(26)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(26)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(27)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(27)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">然</b></td>
@@ -2139,10 +2177,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(27)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(27)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(28)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(28)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">落</b></td>
@@ -2152,10 +2190,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(28)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(28)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(29)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(29)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">面</b></td>
@@ -2165,10 +2203,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(29)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(29)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(30)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(30)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">體</b></td>
@@ -2178,10 +2216,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(30)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(30)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(31)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(31)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">神</b></td>
@@ -2191,10 +2229,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(31)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(31)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(32)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(32)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">行</b><div style="font-size:12px; color:#155724;">🔊讀音:恆</div></td>
@@ -2204,10 +2242,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(32)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(32)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(33)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(33)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">情</b></td>
@@ -2217,10 +2255,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(33)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(33)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(34)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(34)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">實</b></td>
@@ -2230,10 +2268,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(34)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(34)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(35)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(35)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">自</b></td>
@@ -2243,10 +2281,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(35)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(35)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(36)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(36)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">意</b></td>
@@ -2256,10 +2294,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(36)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(36)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(37)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(37)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">來</b></td>
@@ -2269,10 +2307,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(37)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(37)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(38)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(38)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">過</b></td>
@@ -2282,10 +2320,10 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(38)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(38)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(39)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(39)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">氣</b></td>
@@ -2315,7 +2353,7 @@
   {
     "target": "動",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "動作",
@@ -2364,7 +2402,7 @@
   {
     "target": "後",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "後面",
@@ -2413,7 +2451,7 @@
   {
     "target": "前",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "前面",
@@ -2465,12 +2503,8 @@
     "hidden": false,
     "examples": [
       {
-        "word": "物體",
-        "img": ""
-      },
-      {
-        "word": "物件",
-        "img": ""
+        "word": "物體、物件",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4ygGk08fvAvbKh7bptDU6iKJpJKsR_NkoHKB_eaPSNg&s=10"
       },
       {
         "word": "舊物",
@@ -2504,14 +2538,14 @@
         "homo": "死勿",
         "ortho": "死牛",
         "explanation": "",
-        "img": ""
+        "img": "https://i.imgur.com/3GLpGFW.jpeg"
       }
     ]
   },
   {
     "target": "家",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "家人",
@@ -2564,7 +2598,7 @@
   {
     "target": "感",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "感覺",
@@ -2609,7 +2643,7 @@
   {
     "target": "景",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "景色、風景",
@@ -2650,7 +2684,7 @@
   {
     "target": "外",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "外面",
@@ -2699,7 +2733,7 @@
   {
     "target": "滿",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "充滿",
@@ -2748,7 +2782,7 @@
   {
     "target": "子",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "杯子",
@@ -2797,7 +2831,7 @@
   {
     "target": "道",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "道路",
@@ -2846,7 +2880,7 @@
   {
     "target": "空",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "天空",
@@ -2895,7 +2929,7 @@
   {
     "target": "事",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "事情",
@@ -2974,14 +3008,14 @@
         "homo": "公錢",
         "ortho": "土錢",
         "explanation": "",
-        "img": ""
+        "img": "https://i.imgur.com/RIqLdPb.jpeg"
       }
     ]
   },
   {
     "target": "課",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "課堂",
@@ -3026,7 +3060,7 @@
   {
     "target": "發",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "發生",
@@ -3075,7 +3109,7 @@
   {
     "target": "法",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "方法",
@@ -3170,7 +3204,7 @@
         "homo": "場假",
         "ortho": "張假",
         "explanation": "",
-        "img": ""
+        "img": "https://www.ikea.com.hk/dairyfarm/hk/images/032/1403282_PE969289_S4.webp"
       }
     ]
   },
@@ -3218,7 +3252,7 @@
   {
     "target": "場",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "場地",
@@ -3263,7 +3297,7 @@
   {
     "target": "圓",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "圓形",
@@ -3312,7 +3346,7 @@
   {
     "target": "員",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "人員",
@@ -3365,7 +3399,7 @@
   {
     "target": "醫",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "醫生",
@@ -3410,7 +3444,7 @@
   {
     "target": "糕",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "糕點",
@@ -3459,7 +3493,7 @@
   {
     "target": "膏",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "膏藥",
@@ -3496,7 +3530,7 @@
   {
     "target": "聲",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "聲音",
@@ -3594,7 +3628,7 @@
   {
     "target": "然",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "突然",
@@ -3639,7 +3673,7 @@
   {
     "target": "落",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "落後",
@@ -3684,7 +3718,7 @@
   {
     "target": "面",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "面具",
@@ -3733,7 +3767,7 @@
   {
     "target": "體",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "體育",
@@ -3778,7 +3812,7 @@
   {
     "target": "神",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "神",
@@ -3815,7 +3849,7 @@
   {
     "target": "行",
     "pronounce": "恆",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "行走",
@@ -3860,7 +3894,7 @@
   {
     "target": "情",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "情景",
@@ -3913,7 +3947,7 @@
   {
     "target": "實",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "實物",
@@ -3962,7 +3996,7 @@
   {
     "target": "自",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "自大",
@@ -4011,7 +4045,7 @@
   {
     "target": "意",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "大意",
@@ -4056,7 +4090,7 @@
   {
     "target": "來",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "前來",
@@ -4101,7 +4135,7 @@
   {
     "target": "過",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "過期",
@@ -4150,7 +4184,7 @@
   {
     "target": "氣",
     "pronounce": "",
-    "hidden": false,
+    "hidden": true,
     "examples": [
       {
         "word": "氣體",
@@ -5575,4 +5609,10 @@
   </script>
 
 
-</body></html>
+  
+  
+  
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true" style="visibility: visible !important;"></grammarly-desktop-integration></html>
