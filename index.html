@@ -14,8 +14,7 @@
 
 
 
-    <script src="https://cpwebassets.codepen.io/assets/packs/js/authorizeDataCapture-ed3d4ec65f15225e39df.js"></script>
-
+  
   
 
   <title>構詞意識提升班</title>
@@ -34,7 +33,7 @@
   
 </head>
 
-<body translate="no" data-new-gr-c-s-check-loaded="14.1338.0" data-gr-ext-installed="">
+<body translate="no" data-new-gr-c-s-check-loaded="14.1342.0" data-gr-ext-installed="">
   
 
 
@@ -1496,13 +1495,13 @@
           </div>
 
           <!-- 10 格儲物欄網格 (5x2)，內部放置小木磚 -->
-          <div class="mc-inv-grid" id="mcInvGrid"><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「物」字">物</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「景」字">景</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「空」字">空</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「工」字">工</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「長」字">長</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「衣」字">衣</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「光」字">光</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「落」字">落</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「體」字">體</button></div><div class="mc-inv-slot"></div></div>
+          <div class="mc-inv-grid" id="mcInvGrid"><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「物」字">物</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「景」字">景</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「空」字">空</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「事」字">事</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「工」字">工</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「法」字">法</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「長」字">長</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「衣」字">衣</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「場」字">場</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「員」字">員</button></div></div>
 
           <!-- 分頁控制列 -->
           <div class="mc-inv-pagination">
             <button type="button" class="mc-page-btn" id="prevPageBtn" onclick="changeChestPage(-1)" disabled="">◀ 上一頁</button>
-            <span class="mc-page-indicator" id="pageIndicator">第 1 / 1 頁</span>
-            <button type="button" class="mc-page-btn" id="nextPageBtn" onclick="changeChestPage(1)" disabled="">下一頁 ▶</button>
+            <span class="mc-page-indicator" id="pageIndicator">第 1 / 2 頁</span>
+            <button type="button" class="mc-page-btn" id="nextPageBtn" onclick="changeChestPage(1)">下一頁 ▶</button>
           </div>
         </div>
       </div>
@@ -1517,13 +1516,129 @@
 
       <div class="target-hero">
         <div class="target-char-row">
-          <span class="target-char" id="learnChar">動</span>
+          <span class="target-char" id="learnChar">員</span>
           <button class="speaker-btn" title="朗讀目標字" onclick="speakTargetChar()">🔊</button>
         </div>
       </div>
 
       <div class="examples-heading">🌟 日常詞語例子：</div>
-      <div class="example-cards" id="exampleCards"></div>
+      <div class="example-cards" id="exampleCards"><div class="example-card">
+          <div class="flip-card-container">
+            <div class="flip-card-inner">
+              <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
+              <div class="flip-card-front" title="翻開圖片">
+                <svg class="mc-glass-streaks" viewBox="0 0 16 16" preserveAspectRatio="none" shape-rendering="crispEdges">
+                  <rect x="2" y="2" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="2" y="3" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="4" y="4" width="1" height="1" fill="#DCE9F2"></rect>
+                  <rect x="12" y="11" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="11" y="12" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="1" y="1" width="14" height="1" fill="#E3EFF8"></rect>
+                  <rect x="1" y="14" width="14" height="1" fill="#D0E2F0"></rect>
+                </svg>
+                <div class="mc-glass-hint">🔄</div>
+              </div>
+
+              <!-- 背面翻開後：只顯示 🔄 及 🔍 emoji 與圖片 -->
+              <div class="flip-card-back">
+                <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
+                <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
+                <img src="https://i.imgur.com/fYzGlFD.jpeg" class="example-img" alt="員工" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%93%A1%E5%B7%A5'">
+              </div>
+            </div>
+          </div>
+          <div class="example-word-row">
+            <span class="example-word">員工</span>
+            <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
+          </div>
+        </div><div class="example-card">
+          <div class="flip-card-container">
+            <div class="flip-card-inner">
+              <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
+              <div class="flip-card-front" title="翻開圖片">
+                <svg class="mc-glass-streaks" viewBox="0 0 16 16" preserveAspectRatio="none" shape-rendering="crispEdges">
+                  <rect x="2" y="2" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="2" y="3" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="4" y="4" width="1" height="1" fill="#DCE9F2"></rect>
+                  <rect x="12" y="11" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="11" y="12" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="1" y="1" width="14" height="1" fill="#E3EFF8"></rect>
+                  <rect x="1" y="14" width="14" height="1" fill="#D0E2F0"></rect>
+                </svg>
+                <div class="mc-glass-hint">🔄</div>
+              </div>
+
+              <!-- 背面翻開後：只顯示 🔄 及 🔍 emoji 與圖片 -->
+              <div class="flip-card-back">
+                <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
+                <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
+                <img src="https://storage.googleapis.com/static-seinsights-tw-prod/images/a3e5ca09-86e6-4ba0-a890-84392c67e641-w1200.jpg" class="example-img" alt="店員" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%BA%97%E5%93%A1'">
+              </div>
+            </div>
+          </div>
+          <div class="example-word-row">
+            <span class="example-word">店員</span>
+            <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
+          </div>
+        </div><div class="example-card">
+          <div class="flip-card-container">
+            <div class="flip-card-inner">
+              <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
+              <div class="flip-card-front" title="翻開圖片">
+                <svg class="mc-glass-streaks" viewBox="0 0 16 16" preserveAspectRatio="none" shape-rendering="crispEdges">
+                  <rect x="2" y="2" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="2" y="3" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="4" y="4" width="1" height="1" fill="#DCE9F2"></rect>
+                  <rect x="12" y="11" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="11" y="12" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="1" y="1" width="14" height="1" fill="#E3EFF8"></rect>
+                  <rect x="1" y="14" width="14" height="1" fill="#D0E2F0"></rect>
+                </svg>
+                <div class="mc-glass-hint">🔄</div>
+              </div>
+
+              <!-- 背面翻開後：只顯示 🔄 及 🔍 emoji 與圖片 -->
+              <div class="flip-card-back">
+                <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
+                <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
+                <img src="https://www.police.gov.hk/info/img/rec/role_pc.png" class="example-img" alt="警員" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E8%AD%A6%E5%93%A1'">
+              </div>
+            </div>
+          </div>
+          <div class="example-word-row">
+            <span class="example-word">警員</span>
+            <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
+          </div>
+        </div><div class="example-card">
+          <div class="flip-card-container">
+            <div class="flip-card-inner">
+              <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
+              <div class="flip-card-front" title="翻開圖片">
+                <svg class="mc-glass-streaks" viewBox="0 0 16 16" preserveAspectRatio="none" shape-rendering="crispEdges">
+                  <rect x="2" y="2" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="2" y="3" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="4" y="4" width="1" height="1" fill="#DCE9F2"></rect>
+                  <rect x="12" y="11" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="11" y="12" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="1" y="1" width="14" height="1" fill="#E3EFF8"></rect>
+                  <rect x="1" y="14" width="14" height="1" fill="#D0E2F0"></rect>
+                </svg>
+                <div class="mc-glass-hint">🔄</div>
+              </div>
+
+              <!-- 背面翻開後：只顯示 🔄 及 🔍 emoji 與圖片 -->
+              <div class="flip-card-back">
+                <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
+                <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
+                <img src="https://tyj.hubei.gov.cn/bmdt/ztzl/sdzy/2021sdzy/202109/W020210901602437181858.jpg" class="example-img" alt="運動員" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E9%81%8B%E5%8B%95%E5%93%A1'">
+              </div>
+            </div>
+          </div>
+          <div class="example-word-row">
+            <span class="example-word">運動員</span>
+            <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
+          </div>
+        </div></div>
 
       <div class="quiz-mode-group">
         <button class="start-quiz-btn" onclick="startQuiz('spell')">
@@ -1541,25 +1656,25 @@
     <div id="quizView" class="pixel-box quiz-view">
       <div class="top-action-bar">
         <button class="back-btn" onclick="backToLearning()">⬅️ 重看例子</button>
-        <div class="quiz-progress" id="quizProgress">關卡 1 / 3</div>
+        <div class="quiz-progress" id="quizProgress">📝 選擇題 關卡 3 / 3</div>
       </div>
 
-      <div class="quiz-content">
+      <div class="quiz-content mc-mode">
         <!-- 說明文字 -->
-        <div id="quizInstruction" style="font-weight: 700; font-size: 20px;">🧩 請點擊下方字塊，組出正確詞語：</div>
+        <div id="quizInstruction" style="font-weight: 700; font-size: 20px;">📝 請觀察下方圖片，點選出正確的詞語：</div>
 
         <!-- 模式：選擇題區塊 (利用 flex order 在 mc 模式下會被排到圖片上方) -->
-        <div id="mcQuizArea" style="width:100%; display:none; flex-direction:column; align-items:center;">
-          <div class="mc-choices-container" id="mcChoicesContainer"></div>
+        <div id="mcQuizArea" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+          <div class="mc-choices-container" id="mcChoicesContainer"><button type="button" class="mc-option-btn">1. 店貢</button><button type="button" class="mc-option-btn">2. 店員</button><button type="button" class="mc-option-btn">3. 店元</button></div>
         </div>
 
         <!-- 測試詞配圖（無點擊放大功能；iPad與電腦版自動隨屏幕放大） -->
         <div class="quiz-img-box" id="quizImgBox">
-          <img id="quizImg" class="quiz-img" src="" alt="提示圖" decoding="async">
+          <img id="quizImg" class="quiz-img" src="https://storage.googleapis.com/static-seinsights-tw-prod/images/a3e5ca09-86e6-4ba0-a890-84392c67e641-w1200.jpg" alt="提示圖" decoding="async">
         </div>
 
         <!-- 模式：拼字成詞區塊 -->
-        <div id="spellQuizArea" style="width:100%; display:flex; flex-direction:column; align-items:center;">
+        <div id="spellQuizArea" style="width: 100%; display: none; flex-direction: column; align-items: center;">
           <!-- 放置槽 -->
           <div class="slots-container" id="slotsContainer"></div>
           <!-- 候選字池 -->
@@ -1568,8 +1683,8 @@
 
         <!-- 解釋與語音朗讀卡片（不自動播放語音，點擊喇叭才播放） -->
         <div class="explanation-card" id="explanationCard">
-          <div class="exp-word-title" id="expWordTitle"></div>
-          <div class="exp-text" id="explanationText"></div>
+          <div class="exp-word-title" id="expWordTitle">「員工」</div>
+          <div class="exp-text" id="explanationText">職員、幫手工作嘅人</div>
           <button class="speak-replay-btn" onclick="replayAudio()">🔊 點擊朗讀詞語及解釋</button>
           <br>
           <button class="next-quiz-btn" id="nextQuizBtn" onclick="nextQuizQuestion()">下一題 ➡️</button>
@@ -1858,15 +1973,15 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(11)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(11)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(12)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(12)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">事</b></td>
           <td>事情、婚事、軍事、善事（共 4 個）</td>
-          <td><b>好事</b> <span style="font-size:13px; color:#555;">(同音:好視 / 形近:好爭)</span><br><b>善事</b> <span style="font-size:13px; color:#555;">(同音:善視 / 形近:善爭)</span><br><b>心事</b> <span style="font-size:13px; color:#555;">(同音:心視 / 形近:心爭)</span></td>
+          <td><b>事情</b> <span style="font-size:13px; color:#555;">(同音:是情 / 形近:箏情)</span><br><b>善事</b> <span style="font-size:13px; color:#555;">(同音:善是 / 形近:善箏)</span><br><b>心事</b> <span style="font-size:13px; color:#555;">(同音:心是 / 形近:心箏)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(12)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(12)">刪除</button>
@@ -1910,15 +2025,15 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(15)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(15)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(16)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(16)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">法</b></td>
-          <td>方法、做法、法庭、法律、法官（共 5 個）</td>
-          <td><b>用法</b> <span style="font-size:13px; color:#555;">(同音:用發 / 形近:用去)</span><br><b>書法</b> <span style="font-size:13px; color:#555;">(同音:書發 / 形近:書去)</span><br><b>違法</b> <span style="font-size:13px; color:#555;">(同音:違發 / 形近:違去)</span></td>
+          <td>方法、法庭、法律、法官（共 4 個）</td>
+          <td><b>用法</b> <span style="font-size:13px; color:#555;">(同音:用發 / 形近:用珐)</span><br><b>書法</b> <span style="font-size:13px; color:#555;">(同音:書發 / 形近:書珐)</span><br><b>違法</b> <span style="font-size:13px; color:#555;">(同音:違發 / 形近:違珐)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(16)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(16)">刪除</button>
@@ -1949,15 +2064,15 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(18)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(18)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(19)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(19)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">場</b></td>
           <td>場地、運動場、羽毛球場（共 3 個）</td>
-          <td><b>球場</b> <span style="font-size:13px; color:#555;">(同音:球長 / 形近:球揚)</span><br><b>機場</b> <span style="font-size:13px; color:#555;">(同音:機長 / 形近:機揚)</span><br><b>農場</b> <span style="font-size:13px; color:#555;">(同音:農長 / 形近:農揚)</span></td>
+          <td><b>場地</b> <span style="font-size:13px; color:#555;">(同音:長地 / 形近:楊地)</span><br><b>球場</b> <span style="font-size:13px; color:#555;">(同音:球長 / 形近:球揚)</span><br><b>機場</b> <span style="font-size:13px; color:#555;">(同音:機長 / 形近:機揚)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(19)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(19)">刪除</button>
@@ -1975,15 +2090,15 @@
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(20)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(20)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(21)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(21)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">員</b></td>
-          <td>人員、店員、警員、運動員、員工（共 5 個）</td>
-          <td><b>球員</b> <span style="font-size:13px; color:#555;">(同音:球元 / 形近:球貝)</span><br><b>演員</b> <span style="font-size:13px; color:#555;">(同音:演元 / 形近:演貝)</span><br><b>店員</b> <span style="font-size:13px; color:#555;">(同音:店元 / 形近:店貝)</span></td>
+          <td>員工、店員、警員、運動員（共 4 個）</td>
+          <td><b>球員</b> <span style="font-size:13px; color:#555;">(同音:球元 / 形近:球貢)</span><br><b>員工</b> <span style="font-size:13px; color:#555;">(同音:貢工 / 形近:元工)</span><br><b>店員</b> <span style="font-size:13px; color:#555;">(同音:店元 / 形近:店貢)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(21)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(21)">刪除</button>
@@ -2818,7 +2933,7 @@
   {
     "target": "事",
     "pronounce": "",
-    "hidden": true,
+    "hidden": false,
     "examples": [
       {
         "word": "事情",
@@ -2839,28 +2954,28 @@
     ],
     "tests": [
       {
-        "word": "好事",
+        "word": "事情",
         "pronounce": "",
-        "homo": "好視",
-        "ortho": "好爭",
-        "explanation": "好嘅事情",
-        "img": ""
+        "homo": "是情",
+        "ortho": "箏情",
+        "explanation": "人類所做嘅不同活動",
+        "img": "https://i.imgur.com/v7kDbZ5.jpeg"
       },
       {
         "word": "善事",
         "pronounce": "",
-        "homo": "善視",
-        "ortho": "善爭",
-        "explanation": "",
+        "homo": "善是",
+        "ortho": "善箏",
+        "explanation": "善良、幫助到他人嘅事情",
         "img": "https://www.rehabsociety.org.hk/wp-content/uploads/2022/01/02-1.jpg"
       },
       {
         "word": "心事",
         "pronounce": "",
-        "homo": "心視",
-        "ortho": "心爭",
-        "explanation": "",
-        "img": ""
+        "homo": "心是",
+        "ortho": "心箏",
+        "explanation": "心入面唔開心、煩惱嘅事情",
+        "img": "https://i.imgur.com/2J9zuCH.jpeg"
       }
     ]
   },
@@ -2998,15 +3113,11 @@
   {
     "target": "法",
     "pronounce": "",
-    "hidden": true,
+    "hidden": false,
     "examples": [
       {
         "word": "方法",
-        "img": ""
-      },
-      {
-        "word": "做法",
-        "img": ""
+        "img": "https://i.imgur.com/C10hQCh.jpeg"
       },
       {
         "word": "法庭",
@@ -3018,7 +3129,7 @@
       },
       {
         "word": "法官",
-        "img": "https://img.huanqiucdn.cn/dp/api/files/imageDir/907e32e15b3adf7792ed243a82f1bfe0.png?imageView2/2/w/750"
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQywRMChJRHhQgxE2wYOF9xXgJn2BHnx03Ny_zkftF_LHzvMBuwA8Dv-hE&s=10"
       }
     ],
     "tests": [
@@ -3026,7 +3137,7 @@
         "word": "用法",
         "pronounce": "",
         "homo": "用發",
-        "ortho": "用去",
+        "ortho": "用珐",
         "explanation": "使用嘅方法",
         "img": "https://www-ws.gov.taipei/001/Upload/691/relpic/51518/8118498/f5759da6-9f2b-4dc0-aa8d-48e61dea6138.png"
       },
@@ -3034,7 +3145,7 @@
         "word": "書法",
         "pronounce": "",
         "homo": "書發",
-        "ortho": "書去",
+        "ortho": "書珐",
         "explanation": "",
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFqn4hTJ9yFm2N-Bx4y551uGYeOo5LCEUBvzKl9-5BMexIs07qaldhcI8&s=10"
       },
@@ -3042,9 +3153,9 @@
         "word": "違法",
         "pronounce": "",
         "homo": "違發",
-        "ortho": "違去",
+        "ortho": "違珐",
         "explanation": "",
-        "img": ""
+        "img": "https://i.imgur.com/qrT4hH4.jpeg"
       }
     ]
   },
@@ -3141,7 +3252,7 @@
   {
     "target": "場",
     "pronounce": "",
-    "hidden": true,
+    "hidden": false,
     "examples": [
       {
         "word": "場地",
@@ -3158,6 +3269,14 @@
     ],
     "tests": [
       {
+        "word": "場地",
+        "pronounce": "",
+        "homo": "長地",
+        "ortho": "楊地",
+        "explanation": "做特定活動嘅地方",
+        "img": "https://i.imgur.com/Y0ie31u.jpeg"
+      },
+      {
         "word": "球場",
         "pronounce": "",
         "homo": "球長",
@@ -3170,16 +3289,8 @@
         "pronounce": "",
         "homo": "機長",
         "ortho": "機揚",
-        "explanation": "",
+        "explanation": "飛機起飛、降落嘅場地",
         "img": "https://img.soundofhope.org/2022-01/gettyimages-1149089169-1641762769932.jpg"
-      },
-      {
-        "word": "農場",
-        "pronounce": "",
-        "homo": "農長",
-        "ortho": "農揚",
-        "explanation": "",
-        "img": "https://res.klook.com/images/w_1200,h_630,c_fill,q_65/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/nl6humpzemek5imm3njs/%E5%8F%B0%E4%B8%AD%E6%B8%85%E5%A2%83%E8%BE%B2%E5%A0%B4%E4%B8%80%E6%97%A5%E9%81%8A%E5%B0%8E%E8%A6%BD.jpg"
       }
     ]
   },
@@ -3235,11 +3346,11 @@
   {
     "target": "員",
     "pronounce": "",
-    "hidden": true,
+    "hidden": false,
     "examples": [
       {
-        "word": "人員",
-        "img": ""
+        "word": "員工",
+        "img": "https://i.imgur.com/fYzGlFD.jpeg"
       },
       {
         "word": "店員",
@@ -3251,11 +3362,7 @@
       },
       {
         "word": "運動員",
-        "img": "https://www.hksi.org.hk/f/publication/1354/350p240/ng-ka-fung_1461837826.jpg"
-      },
-      {
-        "word": "員工",
-        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBNmkmF1-cAtlZjNpQOuZ2f6V8AukiEwF6vg3iLMAetg-_0NAXeYz299S-&s=10"
+        "img": "https://tyj.hubei.gov.cn/bmdt/ztzl/sdzy/2021sdzy/202109/W020210901602437181858.jpg"
       }
     ],
     "tests": [
@@ -3263,24 +3370,24 @@
         "word": "球員",
         "pronounce": "",
         "homo": "球元",
-        "ortho": "球貝",
+        "ortho": "球貢",
         "explanation": "球類運動嘅運動員",
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsMCju1kirUfeTEgGaJUpu2QGXDeEdfWmeTJI05DiIQy6nwHpjU8B1Zv8n&s=10"
       },
       {
-        "word": "演員",
+        "word": "員工",
         "pronounce": "",
-        "homo": "演元",
-        "ortho": "演貝",
-        "explanation": "",
-        "img": "https://i.imgur.com/fk5WQOP.jpeg"
+        "homo": "貢工",
+        "ortho": "元工",
+        "explanation": "職員、幫手工作嘅人",
+        "img": "https://i.imgur.com/fYzGlFD.jpeg"
       },
       {
         "word": "店員",
         "pronounce": "",
         "homo": "店元",
-        "ortho": "店貝",
-        "explanation": "",
+        "ortho": "店貢",
+        "explanation": "店舖入面工作嘅員工",
         "img": "https://storage.googleapis.com/static-seinsights-tw-prod/images/a3e5ca09-86e6-4ba0-a890-84392c67e641-w1200.jpg"
       }
     ]
