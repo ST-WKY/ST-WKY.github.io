@@ -18,9 +18,9 @@
 
   
 
-  <title>語素自學詞典</title>
+  <title>Treasure box code (enlarged text)</title>
 
-    <link rel="canonical" href="https://codepen.io/STgame/pen/MYJQBeE">
+    <link rel="canonical" href="https://codepen.io/STgame/pen/wBoPrQb">
   
   
   
@@ -34,7 +34,7 @@
   
 </head>
 
-<body translate="no" data-new-gr-c-s-check-loaded="14.1347.0" data-gr-ext-installed="">
+<body translate="no">
   
 
 
@@ -947,10 +947,14 @@
     #spellQuizArea { order: 4; }
     #explanationCard { order: 5; }
 
-    /* 選擇題模式 (mc-mode) 的順序：讓選項區域在圖片上方 */
+    /* 選擇題模式 (mc-mode) 的順序：讓選項區域在圖片上方，並將選擇題中的圖片調小30% */
     .quiz-content.mc-mode #quizInstruction { order: 1; margin-bottom: 4px; }
     .quiz-content.mc-mode #mcQuizArea { order: 2; margin-bottom: 12px; }
-    .quiz-content.mc-mode .quiz-img-box { order: 3; }
+    .quiz-content.mc-mode .quiz-img-box {
+      order: 3;
+      width: clamp(196px, 53.2vw, 476px);
+      height: clamp(154px, 29.4vh, 301px);
+    }
     .quiz-content.mc-mode #explanationCard { order: 4; }
 
     .quiz-img-box {
@@ -1042,7 +1046,7 @@
       pointer-events: none;
     }
 
-    /* 選擇題選項樣式 - 電腦版並排，手機版堆疊 */
+    /* 選擇題選項樣式 - 電腦版並排，手機版堆疊，字體放大20% */
     .mc-choices-container {
       display: flex;
       flex-direction: row;
@@ -1065,7 +1069,7 @@
       background: var(--mario-yellow);
       border: 4px solid #000;
       border-radius: 10px;
-      font-size: clamp(20px, 3vw, 30px);
+      font-size: clamp(24px, 3.6vw, 36px);
       font-weight: 700;
       color: var(--mario-dark);
       cursor: pointer;
@@ -1074,6 +1078,7 @@
       text-align: center;
       letter-spacing: 1px;
       line-height: 1.2;
+      white-space: nowrap;
     }
     .mc-option-btn:hover:not(:disabled) {
       background-color: #ffe047;
@@ -1312,7 +1317,7 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* 手機端專屬微調（保留原本手機的圖片尺寸與設定） */
+    /* 手機端專屬微調（保留原本手機的圖片尺寸與設定，選擇題圖片同步縮小30%，選項字體放大20%） */
     @media (max-width: 550px) {
       .mc-title-banner {
         padding: 10px 18px 14px;
@@ -1348,6 +1353,10 @@
         width: 240px;
         height: 180px;
       }
+      .quiz-content.mc-mode .quiz-img-box {
+        width: 168px;
+        height: 126px;
+      }
       .quiz-img {
         object-fit: cover;
       }
@@ -1361,7 +1370,7 @@
       .mc-option-btn {
         width: 100%;
         flex: none;
-        font-size: 28px;
+        font-size: 34px;
         padding: 14px 18px;
         min-width: auto;
       }
@@ -1496,12 +1505,12 @@
           </div>
 
           <!-- 10 格儲物欄網格 (5x2)，內部放置小木磚 -->
-          <div class="mc-inv-grid" id="mcInvGrid"><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「感」字">感</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「聲」字">聲</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「圓」字">圓</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「外」字">外</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「物」字">物</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「景」字">景</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「空」字">空</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「事」字">事</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「工」字">工</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「法」字">法</button></div></div>
+          <div class="mc-inv-grid" id="mcInvGrid"><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「氣」字">氣</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「後」字">後</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「前」字">前</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「道」字">道</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「感」字">感</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「聲」字">聲</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「圓」字">圓</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「外」字">外</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「物」字">物</button></div><div class="mc-inv-slot"><button type="button" class="brick-btn" title="點擊學習「景」字">景</button></div></div>
 
           <!-- 分頁控制列 -->
           <div class="mc-inv-pagination">
             <button type="button" class="mc-page-btn" id="prevPageBtn" onclick="changeChestPage(-1)" disabled="">◀ 上一頁</button>
-            <span class="mc-page-indicator" id="pageIndicator">第 1 / 2 頁</span>
+            <span class="mc-page-indicator" id="pageIndicator">第 1 / 3 頁</span>
             <button type="button" class="mc-page-btn" id="nextPageBtn" onclick="changeChestPage(1)">下一頁 ▶</button>
           </div>
         </div>
@@ -1517,14 +1526,14 @@
 
       <div class="target-hero">
         <div class="target-char-row">
-          <span class="target-char" id="learnChar">聲</span>
+          <span class="target-char" id="learnChar">氣</span>
           <button class="speaker-btn" title="朗讀目標字" onclick="speakTargetChar()">🔊</button>
         </div>
       </div>
 
       <div class="examples-heading">🌟 日常詞語例子：</div>
       <div class="example-cards" id="exampleCards"><div class="example-card">
-          <div class="flip-card-container flipped">
+          <div class="flip-card-container">
             <div class="flip-card-inner">
               <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
               <div class="flip-card-front" title="翻開圖片">
@@ -1544,16 +1553,16 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://static.bjd.com.cn/dams-res/mps/image/202505/19/682a6af4d5de53c6a1a6af45.jpg" class="example-img" alt="聲音" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E8%81%B2%E9%9F%B3'">
+                <img src="https://pansci.asia/wp-content/uploads/2021/03/building-2058_1280-942x628.jpg" class="example-img" alt="氣體" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E6%B0%A3%E9%AB%94'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">聲音</span>
+            <span class="example-word">氣體</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div><div class="example-card">
-          <div class="flip-card-container flipped">
+          <div class="flip-card-container">
             <div class="flip-card-inner">
               <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
               <div class="flip-card-front" title="翻開圖片">
@@ -1573,16 +1582,16 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://i.imgur.com/tC2LCMQ.png" class="example-img" alt="聲量" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E8%81%B2%E9%87%8F'">
+                <img src="https://i.imgur.com/WXOGcv3.jpeg" class="example-img" alt="氣球" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E6%B0%A3%E7%90%83'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">聲量</span>
+            <span class="example-word">氣球</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div><div class="example-card">
-          <div class="flip-card-container flipped">
+          <div class="flip-card-container">
             <div class="flip-card-inner">
               <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
               <div class="flip-card-front" title="翻開圖片">
@@ -1602,16 +1611,16 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA_uerYzQZG6KWZCWgcQeY95Usl5Q3Mo8YNAD4Z3EQdLPAHODcecVyy2o7&amp;s=10" class="example-img" alt="大聲" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E5%A4%A7%E8%81%B2'">
+                <img src="https://as.chdev.tw/web/article/e/8/4/e573e88c-8fd1-4c1e-b9ae-8119c542626b1642576414.jpg" class="example-img" alt="香氣" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E9%A6%99%E6%B0%A3'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">大聲</span>
+            <span class="example-word">香氣</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div><div class="example-card">
-          <div class="flip-card-container flipped">
+          <div class="flip-card-container">
             <div class="flip-card-inner">
               <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
               <div class="flip-card-front" title="翻開圖片">
@@ -1631,12 +1640,41 @@
               <div class="flip-card-back">
                 <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
                 <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
-                <img src="https://images.chinatimes.com/newsphoto/2024-04-24/656/20240424002048.jpg" class="example-img" alt="雨聲" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E9%9B%A8%E8%81%B2'">
+                <img src="https://www.kcs.edu.hk/ps/activity%20photos/photo/2016-17/2017_act_6/DSC_5631-min.JPG" class="example-img" alt="打氣" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E6%89%93%E6%B0%A3'">
               </div>
             </div>
           </div>
           <div class="example-word-row">
-            <span class="example-word">雨聲</span>
+            <span class="example-word">打氣</span>
+            <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
+          </div>
+        </div><div class="example-card">
+          <div class="flip-card-container">
+            <div class="flip-card-inner">
+              <!-- 正面預設：Minecraft 淺白色染色玻璃（只顯示反轉 emoji） -->
+              <div class="flip-card-front" title="翻開圖片">
+                <svg class="mc-glass-streaks" viewBox="0 0 16 16" preserveAspectRatio="none" shape-rendering="crispEdges">
+                  <rect x="2" y="2" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="2" y="3" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="4" y="4" width="1" height="1" fill="#DCE9F2"></rect>
+                  <rect x="12" y="11" width="1" height="2" fill="#FFFFFF"></rect>
+                  <rect x="11" y="12" width="2" height="1" fill="#FFFFFF"></rect>
+                  <rect x="1" y="1" width="14" height="1" fill="#E3EFF8"></rect>
+                  <rect x="1" y="14" width="14" height="1" fill="#D0E2F0"></rect>
+                </svg>
+                <div class="mc-glass-hint">🔄</div>
+              </div>
+
+              <!-- 背面翻開後：只顯示 🔄 及 🔍 emoji 與圖片 -->
+              <div class="flip-card-back">
+                <span class="card-action-badge badge-flipback" title="反轉卡片">🔄</span>
+                <span class="card-action-badge badge-zoom" title="放大圖片">🔍</span>
+                <img src="https://cdn.langeek.co/photo/61934/original/air?type=jpeg" class="example-img" alt="空氣" title="放大圖片" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x300/5C94FC/ffffff?text=%E7%A9%BA%E6%B0%A3'">
+              </div>
+            </div>
+          </div>
+          <div class="example-word-row">
+            <span class="example-word">空氣</span>
             <button class="speaker-btn-sm" title="朗讀詞語">🔊</button>
           </div>
         </div></div>
@@ -1657,25 +1695,25 @@
     <div id="quizView" class="pixel-box quiz-view">
       <div class="top-action-bar">
         <button class="back-btn" onclick="backToLearning()">⬅️ 重看例子</button>
-        <div class="quiz-progress" id="quizProgress">關卡 1 / 3</div>
+        <div class="quiz-progress" id="quizProgress">📝 選擇題 關卡 1 / 3</div>
       </div>
 
-      <div class="quiz-content">
+      <div class="quiz-content mc-mode">
         <!-- 說明文字 -->
-        <div id="quizInstruction" style="font-weight: 700; font-size: 20px;">🧩 請點擊下方字塊，組出正確詞語：</div>
+        <div id="quizInstruction" style="font-weight: 700; font-size: 20px;">📝 請觀察下方圖片，點選出正確的詞語：</div>
 
         <!-- 模式：選擇題區塊 (利用 flex order 在 mc 模式下會被排到圖片上方) -->
-        <div id="mcQuizArea" style="width:100%; display:none; flex-direction:column; align-items:center;">
-          <div class="mc-choices-container" id="mcChoicesContainer"></div>
+        <div id="mcQuizArea" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+          <div class="mc-choices-container" id="mcChoicesContainer"><button type="button" class="mc-option-btn correct-choice" disabled="">1. 氣體</button><button type="button" class="mc-option-btn" disabled="">2. 器體</button><button type="button" class="mc-option-btn" disabled="">3. 氧體</button></div>
         </div>
 
         <!-- 測試詞配圖（無點擊放大功能；iPad與電腦版自動隨屏幕放大） -->
         <div class="quiz-img-box" id="quizImgBox">
-          <img id="quizImg" class="quiz-img" src="" alt="提示圖" decoding="async">
+          <img id="quizImg" class="quiz-img" src="https://pansci.asia/wp-content/uploads/2021/03/building-2058_1280-942x628.jpg" alt="提示圖" decoding="async">
         </div>
 
         <!-- 模式：拼字成詞區塊 -->
-        <div id="spellQuizArea" style="width:100%; display:flex; flex-direction:column; align-items:center;">
+        <div id="spellQuizArea" style="width: 100%; display: none; flex-direction: column; align-items: center;">
           <!-- 放置槽 -->
           <div class="slots-container" id="slotsContainer"></div>
           <!-- 候選字池 -->
@@ -1683,9 +1721,9 @@
         </div>
 
         <!-- 解釋與語音朗讀卡片（不自動播放語音，點擊喇叭才播放） -->
-        <div class="explanation-card" id="explanationCard">
-          <div class="exp-word-title" id="expWordTitle"></div>
-          <div class="exp-text" id="explanationText"></div>
+        <div class="explanation-card active" id="explanationCard">
+          <div class="exp-word-title" id="expWordTitle">「氣體」</div>
+          <div class="exp-text" id="explanationText">無固定形狀同體積，例如空氣、氧氣等</div>
           <button class="speak-replay-btn" onclick="replayAudio()">🔊 點擊朗讀詞語及解釋</button>
           <br>
           <button class="next-quiz-btn" id="nextQuizBtn" onclick="nextQuizQuestion()">下一題 ➡️</button>
@@ -1776,9 +1814,9 @@
       </div>
 
       <!-- 編輯表單（支援設定目標字與測試詞的粵語女聲同音讀音、增刪例子詞及修改選擇題選項） -->
-      <div id="targetEditForm" style="display: block; background: rgb(249, 249, 249); border: 3px solid rgb(0, 0, 0); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-        <h3 id="formTitle" style="margin-top:0;">✏️ 修改目標字「聲」</h3>
-        <input type="hidden" id="editIndex" value="1">
+      <div id="targetEditForm" style="display:none; background:#f9f9f9; border:3px solid #000; padding:15px; border-radius:8px; margin-bottom:15px;">
+        <h3 id="formTitle" style="margin-top:0;">編輯目標字</h3>
+        <input type="hidden" id="editIndex">
         
         <div class="form-group" style="display:flex; gap:12px; flex-wrap:wrap;">
           <div style="flex:1; min-width:180px;">
@@ -1795,69 +1833,11 @@
         </div>
 
         <div style="font-weight:700; margin:10px 0;">📚 學習例子詞及圖片（可自由新增或刪除，支援 Google Drive 圖片分享連結）：</div>
-        <div id="examplesFormList"><div class="example-form-row" style="margin-bottom: 8px; display: flex; gap: 8px;">
-        <input type="text" placeholder="例詞（如：動作）" value="聲音" class="form-control ex-word" style="width:150px;">
-        <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://static.bjd.com.cn/dams-res/mps/image/202505/19/682a6af4d5de53c6a1a6af45.jpg" class="form-control ex-img" style="flex:1;">
-        <button type="button" class="del-ex-btn" title="刪除此例子" onclick="removeExampleFormField(this)">🗑️ 刪除</button>
-      </div><div class="example-form-row" style="margin-bottom: 8px; display: flex; gap: 8px;">
-        <input type="text" placeholder="例詞（如：動作）" value="聲量" class="form-control ex-word" style="width:150px;">
-        <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://i.imgur.com/tC2LCMQ.png" class="form-control ex-img" style="flex:1;">
-        <button type="button" class="del-ex-btn" title="刪除此例子" onclick="removeExampleFormField(this)">🗑️ 刪除</button>
-      </div><div class="example-form-row" style="margin-bottom: 8px; display: flex; gap: 8px;">
-        <input type="text" placeholder="例詞（如：動作）" value="大聲" class="form-control ex-word" style="width:150px;">
-        <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA_uerYzQZG6KWZCWgcQeY95Usl5Q3Mo8YNAD4Z3EQdLPAHODcecVyy2o7&amp;s=10" class="form-control ex-img" style="flex:1;">
-        <button type="button" class="del-ex-btn" title="刪除此例子" onclick="removeExampleFormField(this)">🗑️ 刪除</button>
-      </div><div class="example-form-row" style="margin-bottom: 8px; display: flex; gap: 8px;">
-        <input type="text" placeholder="例詞（如：動作）" value="雨聲" class="form-control ex-word" style="width:150px;">
-        <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://www.master-insight.com/article/46335" class="form-control ex-img" style="flex:1;">
-        <button type="button" class="del-ex-btn" title="刪除此例子" onclick="removeExampleFormField(this)">🗑️ 刪除</button>
-      </div></div>
+        <div id="examplesFormList"></div>
         <button type="button" class="back-btn" style="margin-bottom:14px; background:#d4edda;" onclick="addExampleFormField()">➕ 新增一個例子詞及圖片</button>
 
         <div style="font-weight:700; margin:10px 0;">🎯 測試詞、粵語女聲同音讀音設定、口語解釋、配圖及「選擇題」干擾詞設定：</div>
-        <div id="testsFormList"><div style="border: 2px solid rgb(0, 0, 0); background: rgb(255, 255, 255); padding: 10px; border-radius: 6px; margin-bottom: 10px;">
-          <div style="font-weight:700; font-size:15px; color:var(--mario-blue); margin-bottom:4px;">測試詞 1：</div>
-          <div style="display:flex; gap:8px; margin:6px 0; flex-wrap:wrap;">
-            <input type="text" placeholder="正確測試詞（如：夜景）" value="風聲" class="form-control test-word" style="width:155px;">
-            <input type="text" placeholder="🔊 粵語女聲同音讀音（選填，如：詳髮）" value="" class="form-control test-pronounce" style="width:230px;">
-            <button type="button" class="back-btn" style="padding:4px 10px; font-size:14px;" onclick="previewTestPronounce(this)">🔊 試聽</button>
-            <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://i.imgur.com/VQqjUQ9.jpeg" class="form-control test-img" style="flex:1; min-width:180px;">
-          </div>
-          <div style="display:flex; gap:8px; margin:6px 0; flex-wrap:wrap; align-items:center; background:#fff8d6; padding:6px 8px; border-radius:6px; border:1px dashed #888;">
-            <span style="font-weight:700; font-size:14px;">📝 選擇題干擾詞：</span>
-            <input type="text" placeholder="目標字同音干擾詞（如：夜竟）" value="風星" class="form-control test-homo" style="flex:1; min-width:160px;">
-            <input type="text" placeholder="目標字形近干擾詞（如：夜京）" value="風馨" class="form-control test-ortho" style="flex:1; min-width:160px;">
-          </div>
-          <input type="text" placeholder="粵語生活口語解釋" value="風嘅聲音" class="form-control test-exp" style="margin-top:4px;">
-        </div><div style="border: 2px solid rgb(0, 0, 0); background: rgb(255, 255, 255); padding: 10px; border-radius: 6px; margin-bottom: 10px;">
-          <div style="font-weight:700; font-size:15px; color:var(--mario-blue); margin-bottom:4px;">測試詞 2：</div>
-          <div style="display:flex; gap:8px; margin:6px 0; flex-wrap:wrap;">
-            <input type="text" placeholder="正確測試詞（如：夜景）" value="水聲" class="form-control test-word" style="width:155px;">
-            <input type="text" placeholder="🔊 粵語女聲同音讀音（選填，如：詳髮）" value="" class="form-control test-pronounce" style="width:230px;">
-            <button type="button" class="back-btn" style="padding:4px 10px; font-size:14px;" onclick="previewTestPronounce(this)">🔊 試聽</button>
-            <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://bimonthly.ps-taiwan.org/cms/media/dd6e2517cc3aad34a5fc774246b659c7.jpg" class="form-control test-img" style="flex:1; min-width:180px;">
-          </div>
-          <div style="display:flex; gap:8px; margin:6px 0; flex-wrap:wrap; align-items:center; background:#fff8d6; padding:6px 8px; border-radius:6px; border:1px dashed #888;">
-            <span style="font-weight:700; font-size:14px;">📝 選擇題干擾詞：</span>
-            <input type="text" placeholder="目標字同音干擾詞（如：夜竟）" value="水星" class="form-control test-homo" style="flex:1; min-width:160px;">
-            <input type="text" placeholder="目標字形近干擾詞（如：夜京）" value="水馨" class="form-control test-ortho" style="flex:1; min-width:160px;">
-          </div>
-          <input type="text" placeholder="粵語生活口語解釋" value="水嘅聲音" class="form-control test-exp" style="margin-top:4px;">
-        </div><div style="border: 2px solid rgb(0, 0, 0); background: rgb(255, 255, 255); padding: 10px; border-radius: 6px; margin-bottom: 10px;">
-          <div style="font-weight:700; font-size:15px; color:var(--mario-blue); margin-bottom:4px;">測試詞 3：</div>
-          <div style="display:flex; gap:8px; margin:6px 0; flex-wrap:wrap;">
-            <input type="text" placeholder="正確測試詞（如：夜景）" value="歌聲" class="form-control test-word" style="width:155px;">
-            <input type="text" placeholder="🔊 粵語女聲同音讀音（選填，如：詳髮）" value="" class="form-control test-pronounce" style="width:230px;">
-            <button type="button" class="back-btn" style="padding:4px 10px; font-size:14px;" onclick="previewTestPronounce(this)">🔊 試聽</button>
-            <input type="text" placeholder="圖片網址 / Google Drive Link" value="https://as.chdev.tw/web/article/9/7/4/9cd4d53f-7cd9-489b-a090-fad4a78aeee61747387138.webp" class="form-control test-img" style="flex:1; min-width:180px;">
-          </div>
-          <div style="display:flex; gap:8px; margin:6px 0; flex-wrap:wrap; align-items:center; background:#fff8d6; padding:6px 8px; border-radius:6px; border:1px dashed #888;">
-            <span style="font-weight:700; font-size:14px;">📝 選擇題干擾詞：</span>
-            <input type="text" placeholder="目標字同音干擾詞（如：夜竟）" value="歌星" class="form-control test-homo" style="flex:1; min-width:160px;">
-            <input type="text" placeholder="目標字形近干擾詞（如：夜京）" value="歌馨" class="form-control test-ortho" style="flex:1; min-width:160px;">
-          </div>
-          <input type="text" placeholder="粵語生活口語解釋" value="唱歌嘅聲音" class="form-control test-exp" style="margin-top:4px;">
-        </div></div>
+        <div id="testsFormList"></div>
 
         <div style="margin-top:15px; display:flex; gap:10px;">
           <button class="admin-btn" style="background:#43B047; color:#fff;" onclick="saveTargetForm()">💾 儲存修改</button>
@@ -1882,9 +1862,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">感</b></td>
-          <td>感覺、五感、感受（共 3 個）</td>
-          <td><b>傷感</b> <span style="font-size:13px; color:#555;">(同音:傷敢 / 形近:傷咸)</span><br><b>好感</b> <span style="font-size:13px; color:#555;">(同音:好敢 / 形近:好咸)</span><br><b>同感</b> <span style="font-size:13px; color:#555;">(同音:同敢 / 形近:同咸)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">氣</b></td>
+          <td>氣體、氣球、香氣、打氣、空氣（共 5 個）</td>
+          <td><b>氣體</b> <span style="font-size:13px; color:#555;">(同音:器體 / 形近:氧體)</span><br><b>氣球</b> <span style="font-size:13px; color:#555;">(同音:器球 / 形近:氧球)</span><br><b>香氣</b> <span style="font-size:13px; color:#555;">(同音:香器 / 形近:香氧)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(0)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(0)">刪除</button>
@@ -1895,9 +1875,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">聲</b></td>
-          <td>聲音、聲量、大聲、雨聲（共 4 個）</td>
-          <td><b>風聲</b> <span style="font-size:13px; color:#555;">(同音:風星 / 形近:風馨)</span><br><b>水聲</b> <span style="font-size:13px; color:#555;">(同音:水星 / 形近:水馨)</span><br><b>歌聲</b> <span style="font-size:13px; color:#555;">(同音:歌星 / 形近:歌馨)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">後</b></td>
+          <td>後面、之後、以後、門後、落後（共 4 個）</td>
+          <td><b>後方</b> <span style="font-size:13px; color:#555;">(同音:候方 / 形近:徒方)</span><br><b>後日</b> <span style="font-size:13px; color:#555;">(同音:候日 / 形近:徒日)</span><br><b>背後</b> <span style="font-size:13px; color:#555;">(同音:背候 / 形近:背徒)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(1)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(1)">刪除</button>
@@ -1908,9 +1888,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">圓</b></td>
-          <td>圓形、圓柱、圓周、圓規（共 4 個）</td>
-          <td><b>半圓</b> <span style="font-size:13px; color:#555;">(同音:半完 / 形近:半園)</span><br><b>圓月</b> <span style="font-size:13px; color:#555;">(同音:完月 / 形近:園月)</span><br><b>圓桌</b> <span style="font-size:13px; color:#555;">(同音:完桌 / 形近:園桌)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">前</b></td>
+          <td>前面、之前、以前（共 2 個）</td>
+          <td><b>前方</b> <span style="font-size:13px; color:#555;">(同音:錢方 / 形近:煎方)</span><br><b>前日</b> <span style="font-size:13px; color:#555;">(同音:錢日 / 形近:煎日)</span><br><b>門前</b> <span style="font-size:13px; color:#555;">(同音:門錢 / 形近:門煎)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(2)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(2)">刪除</button>
@@ -1921,48 +1901,48 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">外</b></td>
-          <td>外面、外表、出外（共 3 個）</td>
-          <td><b>外衣</b> <span style="font-size:13px; color:#555;">(同音:愛衣 / 形近:列衣)</span><br><b>外國</b> <span style="font-size:13px; color:#555;">(同音:愛國 / 形近:列國)</span><br><b>門外</b> <span style="font-size:13px; color:#555;">(同音:門愛 / 形近:門列)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">道</b></td>
+          <td>道路、鐵道、行人道、知道（共 4 個）</td>
+          <td><b>跑道</b> <span style="font-size:13px; color:#555;">(同音:跑到 / 形近:跑進)</span><br><b>街道</b> <span style="font-size:13px; color:#555;">(同音:街到 / 形近:街進)</span><br><b>車道</b> <span style="font-size:13px; color:#555;">(同音:車到 / 形近:車進)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(3)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(3)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(4)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(4)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">動</b></td>
-          <td>動作、電動、運動、活動（共 4 個）</td>
-          <td><b>動畫</b> <span style="font-size:13px; color:#555;">(同音:洞畫 / 形近:勳畫)</span><br><b>動手</b> <span style="font-size:13px; color:#555;">(同音:洞手 / 形近:勳手)</span><br><b>動力</b> <span style="font-size:13px; color:#555;">(同音:洞力 / 形近:勳力)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">感</b></td>
+          <td>感覺、五感、感受（共 3 個）</td>
+          <td><b>傷感</b> <span style="font-size:13px; color:#555;">(同音:傷敢 / 形近:傷咸)</span><br><b>好感</b> <span style="font-size:13px; color:#555;">(同音:好敢 / 形近:好咸)</span><br><b>同感</b> <span style="font-size:13px; color:#555;">(同音:同敢 / 形近:同咸)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(4)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(4)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(5)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(5)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">後</b></td>
-          <td>後面、之後、以後、落後（共 4 個）</td>
-          <td><b>後方</b> <span style="font-size:13px; color:#555;">(同音:厚方 / 形近:徒方)</span><br><b>後日</b> <span style="font-size:13px; color:#555;">(同音:厚日 / 形近:徒日)</span><br><b>背後</b> <span style="font-size:13px; color:#555;">(同音:背厚 / 形近:背徒)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">聲</b></td>
+          <td>聲音、聲量、大聲、雨聲（共 4 個）</td>
+          <td><b>風聲</b> <span style="font-size:13px; color:#555;">(同音:風星 / 形近:風馨)</span><br><b>水聲</b> <span style="font-size:13px; color:#555;">(同音:水星 / 形近:水馨)</span><br><b>歌聲</b> <span style="font-size:13px; color:#555;">(同音:歌星 / 形近:歌馨)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(5)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(5)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(6)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(6)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">前</b></td>
-          <td>前面、之前、以前、從前（共 4 個）</td>
-          <td><b>前方</b> <span style="font-size:13px; color:#555;">(同音:錢方 / 形近:煎方)</span><br><b>前日</b> <span style="font-size:13px; color:#555;">(同音:錢日 / 形近:煎日)</span><br><b>前年</b> <span style="font-size:13px; color:#555;">(同音:錢年 / 形近:煎年)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">圓</b></td>
+          <td>圓形、圓柱、圓周、圓規（共 4 個）</td>
+          <td><b>半圓</b> <span style="font-size:13px; color:#555;">(同音:半完 / 形近:半園)</span><br><b>圓月</b> <span style="font-size:13px; color:#555;">(同音:完月 / 形近:園月)</span><br><b>圓桌</b> <span style="font-size:13px; color:#555;">(同音:完桌 / 形近:園桌)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(6)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(6)">刪除</button>
@@ -1973,9 +1953,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">物</b></td>
-          <td>物體、物件、舊物、廢物（共 3 個）</td>
-          <td><b>寶物</b> <span style="font-size:13px; color:#555;">(同音:寳牠 / 形近:寳勿)</span><br><b>生物</b> <span style="font-size:13px; color:#555;">(同音:生勿 / 形近:生牠)</span><br><b>死物</b> <span style="font-size:13px; color:#555;">(同音:死勿 / 形近:死牠)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">外</b></td>
+          <td>外面、外表、出外（共 3 個）</td>
+          <td><b>外衣</b> <span style="font-size:13px; color:#555;">(同音:愛衣 / 形近:列衣)</span><br><b>外國</b> <span style="font-size:13px; color:#555;">(同音:愛國 / 形近:列國)</span><br><b>門外</b> <span style="font-size:13px; color:#555;">(同音:門愛 / 形近:門列)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(7)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(7)">刪除</button>
@@ -1986,9 +1966,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">家</b></td>
-          <td>家人、家長、專家、漫畫家、音樂家（共 5 個）</td>
-          <td><b>家課</b> <span style="font-size:13px; color:#555;">(同音:加課 / 形近:塚課)</span><br><b>作家</b> <span style="font-size:13px; color:#555;">(同音:作加 / 形近:作塚)</span><br><b>畫家</b> <span style="font-size:13px; color:#555;">(同音:畫加 / 形近:畫塚)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">動</b></td>
+          <td>動作、電動、運動、活動（共 4 個）</td>
+          <td><b>動畫</b> <span style="font-size:13px; color:#555;">(同音:洞畫 / 形近:勳畫)</span><br><b>動手</b> <span style="font-size:13px; color:#555;">(同音:洞手 / 形近:勳手)</span><br><b>動力</b> <span style="font-size:13px; color:#555;">(同音:洞力 / 形近:勳力)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(8)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(8)">刪除</button>
@@ -1999,9 +1979,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">景</b></td>
-          <td>景色、風景、山景（共 2 個）</td>
-          <td><b>海景</b> <span style="font-size:13px; color:#555;">(同音:海竟 / 形近:海京)</span><br><b>夜景</b> <span style="font-size:13px; color:#555;">(同音:夜竟 / 形近:夜京)</span><br><b>美景</b> <span style="font-size:13px; color:#555;">(同音:美竟 / 形近:美京)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">物</b></td>
+          <td>物體、物件、舊物、廢物（共 3 個）</td>
+          <td><b>寶物</b> <span style="font-size:13px; color:#555;">(同音:寳牠 / 形近:寳勿)</span><br><b>生物</b> <span style="font-size:13px; color:#555;">(同音:生勿 / 形近:生牠)</span><br><b>死物</b> <span style="font-size:13px; color:#555;">(同音:死勿 / 形近:死牠)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(9)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(9)">刪除</button>
@@ -2012,22 +1992,22 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">滿</b></td>
-          <td>充滿、滿頭、滿瀉、滿月（共 4 個）</td>
-          <td><b>滿分</b> <span style="font-size:13px; color:#555;">(同音:悶分 / 形近:瞞分)</span><br><b>滿座</b> <span style="font-size:13px; color:#555;">(同音:悶座 / 形近:瞞座)</span><br><b>滿身</b> <span style="font-size:13px; color:#555;">(同音:悶身 / 形近:瞞身)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">家</b></td>
+          <td>家人、家長、專家、漫畫家、音樂家（共 5 個）</td>
+          <td><b>家課</b> <span style="font-size:13px; color:#555;">(同音:加課 / 形近:塚課)</span><br><b>作家</b> <span style="font-size:13px; color:#555;">(同音:作加 / 形近:作塚)</span><br><b>畫家</b> <span style="font-size:13px; color:#555;">(同音:畫加 / 形近:畫塚)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(10)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(10)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(11)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(11)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">子</b></td>
-          <td>杯子、鼻子、辮子、肚子（共 4 個）</td>
-          <td><b>果子</b> <span style="font-size:13px; color:#555;">(同音:果紙 / 形近:果了)</span><br><b>椅子</b> <span style="font-size:13px; color:#555;">(同音:椅紙 / 形近:椅了)</span><br><b>桌子</b> <span style="font-size:13px; color:#555;">(同音:桌紙 / 形近:桌了)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">景</b></td>
+          <td>景色、風景、山景（共 2 個）</td>
+          <td><b>海景</b> <span style="font-size:13px; color:#555;">(同音:海竟 / 形近:海京)</span><br><b>夜景</b> <span style="font-size:13px; color:#555;">(同音:夜竟 / 形近:夜京)</span><br><b>美景</b> <span style="font-size:13px; color:#555;">(同音:美竟 / 形近:美京)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(11)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(11)">刪除</button>
@@ -2038,22 +2018,22 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">道</b></td>
-          <td>道路、車道、行人道、知道（共 4 個）</td>
-          <td><b>跑道</b> <span style="font-size:13px; color:#555;">(同音:跑度 / 形近:跑首)</span><br><b>街道</b> <span style="font-size:13px; color:#555;">(同音:街度 / 形近:街首)</span><br><b>鐵道</b> <span style="font-size:13px; color:#555;">(同音:鐵度 / 形近:鐵首)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">滿</b></td>
+          <td>充滿、滿頭、滿瀉、滿月（共 4 個）</td>
+          <td><b>滿分</b> <span style="font-size:13px; color:#555;">(同音:悶分 / 形近:瞞分)</span><br><b>滿座</b> <span style="font-size:13px; color:#555;">(同音:悶座 / 形近:瞞座)</span><br><b>滿身</b> <span style="font-size:13px; color:#555;">(同音:悶身 / 形近:瞞身)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(12)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(12)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(13)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(13)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">空</b></td>
-          <td>天空、空心、空中、空車（共 4 個）</td>
-          <td><b>高空</b> <span style="font-size:13px; color:#555;">(同音:高埪 / 形近:高室)</span><br><b>夜空</b> <span style="font-size:13px; color:#555;">(同音:夜埪 / 形近:夜室)</span><br><b>空位</b> <span style="font-size:13px; color:#555;">(同音:埪位 / 形近:室位)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">子</b></td>
+          <td>杯子、鼻子、辮子、肚子（共 4 個）</td>
+          <td><b>果子</b> <span style="font-size:13px; color:#555;">(同音:果紙 / 形近:果了)</span><br><b>椅子</b> <span style="font-size:13px; color:#555;">(同音:椅紙 / 形近:椅了)</span><br><b>桌子</b> <span style="font-size:13px; color:#555;">(同音:桌紙 / 形近:桌了)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(13)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(13)">刪除</button>
@@ -2064,9 +2044,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">事</b></td>
-          <td>事情、婚事、軍事、善事（共 4 個）</td>
-          <td><b>事情</b> <span style="font-size:13px; color:#555;">(同音:是情 / 形近:箏情)</span><br><b>善事</b> <span style="font-size:13px; color:#555;">(同音:善是 / 形近:善箏)</span><br><b>心事</b> <span style="font-size:13px; color:#555;">(同音:心是 / 形近:心箏)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">空</b></td>
+          <td>天空、空心、空中、空車（共 4 個）</td>
+          <td><b>高空</b> <span style="font-size:13px; color:#555;">(同音:高埪 / 形近:高室)</span><br><b>夜空</b> <span style="font-size:13px; color:#555;">(同音:夜埪 / 形近:夜室)</span><br><b>空位</b> <span style="font-size:13px; color:#555;">(同音:埪位 / 形近:室位)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(14)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(14)">刪除</button>
@@ -2077,22 +2057,22 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">工</b></td>
-          <td>工作（共 1 個）</td>
-          <td><b>工人</b> <span style="font-size:13px; color:#555;">(同音:公人 / 形近:土人)</span><br><b>開工</b> <span style="font-size:13px; color:#555;">(同音:開公 / 形近:開土)</span><br><b>工錢</b> <span style="font-size:13px; color:#555;">(同音:公錢 / 形近:土錢)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">事</b></td>
+          <td>事情、婚事、軍事、善事（共 4 個）</td>
+          <td><b>事情</b> <span style="font-size:13px; color:#555;">(同音:是情 / 形近:箏情)</span><br><b>善事</b> <span style="font-size:13px; color:#555;">(同音:善是 / 形近:善箏)</span><br><b>心事</b> <span style="font-size:13px; color:#555;">(同音:心是 / 形近:心箏)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(15)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(15)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(16)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(16)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">課</b></td>
-          <td>課堂、英文課、數學課（共 3 個）</td>
-          <td><b>課外</b> <span style="font-size:13px; color:#555;">(同音:貨外 / 形近:棵外)</span><br><b>上課</b> <span style="font-size:13px; color:#555;">(同音:上貨 / 形近:上棵)</span><br><b>課後</b> <span style="font-size:13px; color:#555;">(同音:貨後 / 形近:棵後)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">工</b></td>
+          <td>工作（共 1 個）</td>
+          <td><b>工人</b> <span style="font-size:13px; color:#555;">(同音:公人 / 形近:土人)</span><br><b>開工</b> <span style="font-size:13px; color:#555;">(同音:開公 / 形近:開土)</span><br><b>工錢</b> <span style="font-size:13px; color:#555;">(同音:公錢 / 形近:土錢)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(16)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(16)">刪除</button>
@@ -2103,22 +2083,22 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">發</b></td>
-          <td>發生、發出、發芽、發燒（共 4 個）</td>
-          <td><b>發聲</b> <span style="font-size:13px; color:#555;">(同音:法聲 / 形近:廢聲)</span><br><b>發電</b> <span style="font-size:13px; color:#555;">(同音:法電 / 形近:廢電)</span><br><b>發光</b> <span style="font-size:13px; color:#555;">(同音:法光 / 形近:廢光)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">課</b></td>
+          <td>課堂、英文課、數學課（共 3 個）</td>
+          <td><b>課外</b> <span style="font-size:13px; color:#555;">(同音:貨外 / 形近:棵外)</span><br><b>上課</b> <span style="font-size:13px; color:#555;">(同音:上貨 / 形近:上棵)</span><br><b>課後</b> <span style="font-size:13px; color:#555;">(同音:貨後 / 形近:棵後)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(17)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(17)">刪除</button>
           </td>
-        </tr><tr>
+        </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(18)" title="點擊切換顯示/隱藏">
-              👁️ 顯示中
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(18)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">法</b></td>
-          <td>方法、法庭、法律、法官（共 4 個）</td>
-          <td><b>用法</b> <span style="font-size:13px; color:#555;">(同音:用發 / 形近:用珐)</span><br><b>書法</b> <span style="font-size:13px; color:#555;">(同音:書發 / 形近:書珐)</span><br><b>違法</b> <span style="font-size:13px; color:#555;">(同音:違發 / 形近:違珐)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">發</b></td>
+          <td>發生、發出、發芽、發燒（共 4 個）</td>
+          <td><b>發聲</b> <span style="font-size:13px; color:#555;">(同音:法聲 / 形近:廢聲)</span><br><b>發電</b> <span style="font-size:13px; color:#555;">(同音:法電 / 形近:廢電)</span><br><b>發光</b> <span style="font-size:13px; color:#555;">(同音:法光 / 形近:廢光)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(18)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(18)">刪除</button>
@@ -2129,9 +2109,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">長</b><div style="font-size:12px; color:#155724;">🔊讀音:詳</div></td>
-          <td>長度、長河、長頸鹿、長襪（共 4 個）</td>
-          <td><b>長髮</b> <span style="font-size:13px; color:#555;">(同音:衣髮 / 形近:農髮 / 🔊讀:詳髮)</span><br><b>長裙</b> <span style="font-size:13px; color:#555;">(同音:衣裙 / 形近:農裙 / 🔊讀:詳裙)</span><br><b>長凳</b> <span style="font-size:13px; color:#555;">(同音:衣假 / 形近:農假 / 🔊讀:詳假)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">法</b></td>
+          <td>方法、法庭、法律、法官（共 4 個）</td>
+          <td><b>用法</b> <span style="font-size:13px; color:#555;">(同音:用發 / 形近:用珐)</span><br><b>書法</b> <span style="font-size:13px; color:#555;">(同音:書發 / 形近:書珐)</span><br><b>違法</b> <span style="font-size:13px; color:#555;">(同音:違發 / 形近:違珐)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(19)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(19)">刪除</button>
@@ -2142,9 +2122,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">衣</b></td>
-          <td>衣服、衣物（共 2 個）</td>
-          <td><b>外衣</b> <span style="font-size:13px; color:#555;">(同音:外表 / 形近:外依)</span><br><b>泳衣</b> <span style="font-size:13px; color:#555;">(同音:泳依 / 形近:泳表)</span><br><b>毛衣</b> <span style="font-size:13px; color:#555;">(同音:毛依 / 形近:毛表)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">長</b><div style="font-size:12px; color:#155724;">🔊讀音:詳</div></td>
+          <td>長度、長河、長頸鹿、長襪（共 4 個）</td>
+          <td><b>長髮</b> <span style="font-size:13px; color:#555;">(同音:衣髮 / 形近:農髮 / 🔊讀:詳髮)</span><br><b>長裙</b> <span style="font-size:13px; color:#555;">(同音:衣裙 / 形近:農裙 / 🔊讀:詳裙)</span><br><b>長凳</b> <span style="font-size:13px; color:#555;">(同音:衣假 / 形近:農假 / 🔊讀:詳假)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(20)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(20)">刪除</button>
@@ -2155,9 +2135,9 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">場</b></td>
-          <td>場地、運動場、羽毛球場（共 3 個）</td>
-          <td><b>場地</b> <span style="font-size:13px; color:#555;">(同音:長地 / 形近:楊地)</span><br><b>球場</b> <span style="font-size:13px; color:#555;">(同音:球長 / 形近:球揚)</span><br><b>機場</b> <span style="font-size:13px; color:#555;">(同音:機長 / 形近:機揚)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">衣</b></td>
+          <td>衣服、衣物（共 2 個）</td>
+          <td><b>外衣</b> <span style="font-size:13px; color:#555;">(同音:外表 / 形近:外依)</span><br><b>泳衣</b> <span style="font-size:13px; color:#555;">(同音:泳依 / 形近:泳表)</span><br><b>毛衣</b> <span style="font-size:13px; color:#555;">(同音:毛依 / 形近:毛表)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(21)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(21)">刪除</button>
@@ -2168,22 +2148,22 @@
               👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">員</b></td>
-          <td>員工、店員、警員、運動員（共 4 個）</td>
-          <td><b>球員</b> <span style="font-size:13px; color:#555;">(同音:球元 / 形近:球貢)</span><br><b>員工</b> <span style="font-size:13px; color:#555;">(同音:貢工 / 形近:元工)</span><br><b>店員</b> <span style="font-size:13px; color:#555;">(同音:店元 / 形近:店貢)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">場</b></td>
+          <td>場地、運動場、羽毛球場（共 3 個）</td>
+          <td><b>場地</b> <span style="font-size:13px; color:#555;">(同音:長地 / 形近:楊地)</span><br><b>球場</b> <span style="font-size:13px; color:#555;">(同音:球長 / 形近:球揚)</span><br><b>機場</b> <span style="font-size:13px; color:#555;">(同音:機長 / 形近:機揚)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(22)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(22)">刪除</button>
           </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
+        </tr><tr>
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(23)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(23)" title="點擊切換顯示/隱藏">
+              👁️ 顯示中
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">醫</b></td>
-          <td>醫生、醫院、醫療室（共 3 個）</td>
-          <td><b>牙醫</b> <span style="font-size:13px; color:#555;">(同音:牙衣 / 形近:牙醬)</span><br><b>西醫</b> <span style="font-size:13px; color:#555;">(同音:西衣 / 形近:西醬)</span><br><b>中醫</b> <span style="font-size:13px; color:#555;">(同音:中衣 / 形近:中醬)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">員</b></td>
+          <td>員工、店員、警員、運動員（共 4 個）</td>
+          <td><b>球員</b> <span style="font-size:13px; color:#555;">(同音:球元 / 形近:球貢)</span><br><b>員工</b> <span style="font-size:13px; color:#555;">(同音:貢工 / 形近:元工)</span><br><b>店員</b> <span style="font-size:13px; color:#555;">(同音:店元 / 形近:店貢)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(23)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(23)">刪除</button>
@@ -2194,9 +2174,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">糕</b></td>
-          <td>糕點、蛋糕、紅豆糕、椰汁糕（共 4 個）</td>
-          <td><b>芝麻糕</b> <span style="font-size:13px; color:#555;">(同音:芝麻高 / 形近:芝麻羔)</span><br><b>蘿蔔糕</b> <span style="font-size:13px; color:#555;">(同音:蘿蔔高 / 形近:蘿蔔羔)</span><br><b>年糕</b> <span style="font-size:13px; color:#555;">(同音:年高 / 形近:年羔)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">醫</b></td>
+          <td>醫生、醫院、醫療室（共 3 個）</td>
+          <td><b>牙醫</b> <span style="font-size:13px; color:#555;">(同音:牙衣 / 形近:牙醬)</span><br><b>西醫</b> <span style="font-size:13px; color:#555;">(同音:西衣 / 形近:西醬)</span><br><b>中醫</b> <span style="font-size:13px; color:#555;">(同音:中衣 / 形近:中醬)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(24)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(24)">刪除</button>
@@ -2207,16 +2187,29 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">膏</b></td>
-          <td>膏藥（共 1 個）</td>
-          <td><b>藥膏</b> <span style="font-size:13px; color:#555;">(同音:藥高 / 形近:藥盲)</span><br><b>牙膏</b> <span style="font-size:13px; color:#555;">(同音:牙高 / 形近:牙盲)</span><br><b>唇膏</b> <span style="font-size:13px; color:#555;">(同音:唇高 / 形近:唇盲)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">糕</b></td>
+          <td>糕點、蛋糕、紅豆糕、椰汁糕（共 4 個）</td>
+          <td><b>芝麻糕</b> <span style="font-size:13px; color:#555;">(同音:芝麻高 / 形近:芝麻羔)</span><br><b>蘿蔔糕</b> <span style="font-size:13px; color:#555;">(同音:蘿蔔高 / 形近:蘿蔔羔)</span><br><b>年糕</b> <span style="font-size:13px; color:#555;">(同音:年高 / 形近:年羔)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(25)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(25)">刪除</button>
           </td>
+        </tr><tr style="background: rgb(249, 242, 244);">
+          <td>
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(26)" title="點擊切換顯示/隱藏">
+              🙈 已隱藏
+            </span>
+          </td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">膏</b></td>
+          <td>膏藥（共 1 個）</td>
+          <td><b>藥膏</b> <span style="font-size:13px; color:#555;">(同音:藥高 / 形近:藥盲)</span><br><b>牙膏</b> <span style="font-size:13px; color:#555;">(同音:牙高 / 形近:牙盲)</span><br><b>唇膏</b> <span style="font-size:13px; color:#555;">(同音:唇高 / 形近:唇盲)</span></td>
+          <td>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(26)">修改</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(26)">刪除</button>
+          </td>
         </tr><tr>
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(26)" title="點擊切換顯示/隱藏">
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(27)" title="點擊切換顯示/隱藏">
               👁️ 顯示中
             </span>
           </td>
@@ -2224,12 +2217,12 @@
           <td>光亮、光明、光線、星光（共 4 個）</td>
           <td><b>燈光</b> <span style="font-size:13px; color:#555;">(同音:燈兆 / 形近:燈先)</span><br><b>月光</b> <span style="font-size:13px; color:#555;">(同音:月兆 / 形近:月先)</span><br><b>火光</b> <span style="font-size:13px; color:#555;">(同音:火兆 / 形近:火先)</span></td>
           <td>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(26)">修改</button>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(26)">刪除</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(27)">修改</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(27)">刪除</button>
           </td>
         </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(27)" title="點擊切換顯示/隱藏">
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(28)" title="點擊切換顯示/隱藏">
               🙈 已隱藏
             </span>
           </td>
@@ -2237,12 +2230,12 @@
           <td>突然、然後、自然（共 3 個）</td>
           <td><b>突然</b> <span style="font-size:13px; color:#555;">(同音:突言 / 形近:突燃)</span><br><b>然後</b> <span style="font-size:13px; color:#555;">(同音:言後 / 形近:燃後)</span><br><b>自然</b> <span style="font-size:13px; color:#555;">(同音:自言 / 形近:自燃)</span></td>
           <td>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(27)">修改</button>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(27)">刪除</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(28)">修改</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(28)">刪除</button>
           </td>
         </tr><tr>
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(28)" title="點擊切換顯示/隱藏">
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(29)" title="點擊切換顯示/隱藏">
               👁️ 顯示中
             </span>
           </td>
@@ -2250,12 +2243,12 @@
           <td>落後、落樓梯、上/落（共 3 個）</td>
           <td><b>落日</b> <span style="font-size:13px; color:#555;">(同音:客人 / 形近:洛日)</span><br><b>落淚</b> <span style="font-size:13px; color:#555;">(同音:洛淚 / 形近:客淚)</span><br><b>落葉</b> <span style="font-size:13px; color:#555;">(同音:客葉 / 形近:洛葉)</span></td>
           <td>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(28)">修改</button>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(28)">刪除</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(29)">修改</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(29)">刪除</button>
           </td>
         </tr><tr style="background: rgb(249, 242, 244);">
           <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(29)" title="點擊切換顯示/隱藏">
+            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(30)" title="點擊切換顯示/隱藏">
               🙈 已隱藏
             </span>
           </td>
@@ -2263,31 +2256,18 @@
           <td>面具、面貌、前面、後面（共 4 個）</td>
           <td><b>見面</b> <span style="font-size:13px; color:#555;">(同音:見麵 / 形近:見而)</span><br><b>面試</b> <span style="font-size:13px; color:#555;">(同音:麵試 / 形近:而試)</span><br><b>背面</b> <span style="font-size:13px; color:#555;">(同音:背麵 / 形近:背而)</span></td>
           <td>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(29)">修改</button>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(29)">刪除</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(30)">修改</button>
+            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(30)">刪除</button>
           </td>
         </tr><tr>
           <td>
-            <span class="visibility-badge shown" onclick="toggleTargetVisibility(30)" title="點擊切換顯示/隱藏">
+            <span class="visibility-badge shown" onclick="toggleTargetVisibility(31)" title="點擊切換顯示/隱藏">
               👁️ 顯示中
             </span>
           </td>
           <td><b style="font-size:24px; color:var(--mario-blue);">體</b></td>
           <td>體育、身體、體型（共 3 個）</td>
           <td><b>體溫</b> <span style="font-size:13px; color:#555;">(同音:骼溫 / 形近:身溫)</span><br><b>體重</b> <span style="font-size:13px; color:#555;">(同音:身重 / 形近:骼重)</span><br><b>體力</b> <span style="font-size:13px; color:#555;">(同音:骼力 / 形近:身力)</span></td>
-          <td>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(30)">修改</button>
-            <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(30)">刪除</button>
-          </td>
-        </tr><tr style="background: rgb(249, 242, 244);">
-          <td>
-            <span class="visibility-badge hidden" onclick="toggleTargetVisibility(31)" title="點擊切換顯示/隱藏">
-              🙈 已隱藏
-            </span>
-          </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">神</b></td>
-          <td>神、神父、精神（共 3 個）</td>
-          <td><b>女神</b> <span style="font-size:13px; color:#555;">(同音:女晨 / 形近:女伸)</span><br><b>精神</b> <span style="font-size:13px; color:#555;">(同音:精晨 / 形近:精伸)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(31)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(31)">刪除</button>
@@ -2298,9 +2278,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">行</b><div style="font-size:12px; color:#155724;">🔊讀音:恆</div></td>
-          <td>行走、行車、行醫（共 3 個）</td>
-          <td><b>行人</b> <span style="font-size:13px; color:#555;">(同音:恆人 / 形近:街人 / 🔊讀:恆人)</span><br><b>行車</b> <span style="font-size:13px; color:#555;">(同音:恆車 / 形近:街車 / 🔊讀:恆車)</span><br><b>行醫</b> <span style="font-size:13px; color:#555;">(同音:恆醫 / 形近:街醫 / 🔊讀:恆醫)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">神</b></td>
+          <td>神、神父、精神（共 3 個）</td>
+          <td><b>女神</b> <span style="font-size:13px; color:#555;">(同音:女晨 / 形近:女伸)</span><br><b>精神</b> <span style="font-size:13px; color:#555;">(同音:精晨 / 形近:精伸)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(32)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(32)">刪除</button>
@@ -2311,9 +2291,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">情</b></td>
-          <td>情景、愛情、親情、心情、情況（共 5 個）</td>
-          <td><b>情景</b> <span style="font-size:13px; color:#555;">(同音:程景 / 形近:晴景)</span><br><b>病情</b> <span style="font-size:13px; color:#555;">(同音:病程 / 形近:病晴)</span><br><b>心情</b> <span style="font-size:13px; color:#555;">(同音:心程 / 形近:心晴)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">行</b><div style="font-size:12px; color:#155724;">🔊讀音:恆</div></td>
+          <td>行走、行車、行醫（共 3 個）</td>
+          <td><b>行人</b> <span style="font-size:13px; color:#555;">(同音:恆人 / 形近:街人 / 🔊讀:恆人)</span><br><b>行車</b> <span style="font-size:13px; color:#555;">(同音:恆車 / 形近:街車 / 🔊讀:恆車)</span><br><b>行醫</b> <span style="font-size:13px; color:#555;">(同音:恆醫 / 形近:街醫 / 🔊讀:恆醫)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(33)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(33)">刪除</button>
@@ -2324,9 +2304,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">實</b></td>
-          <td>實物、真實、實驗、果實（共 4 個）</td>
-          <td><b>實驗</b> <span style="font-size:13px; color:#555;">(同音:十驗 / 形近:貫驗)</span><br><b>實物</b> <span style="font-size:13px; color:#555;">(同音:十物 / 形近:貫物)</span><br><b>果實</b> <span style="font-size:13px; color:#555;">(同音:果十 / 形近:果貫)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">情</b></td>
+          <td>情景、愛情、親情、心情、情況（共 5 個）</td>
+          <td><b>情景</b> <span style="font-size:13px; color:#555;">(同音:程景 / 形近:晴景)</span><br><b>病情</b> <span style="font-size:13px; color:#555;">(同音:病程 / 形近:病晴)</span><br><b>心情</b> <span style="font-size:13px; color:#555;">(同音:心程 / 形近:心晴)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(34)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(34)">刪除</button>
@@ -2337,9 +2317,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">自</b></td>
-          <td>自大、自滿、自動、自然（共 4 個）</td>
-          <td><b>自大</b> <span style="font-size:13px; color:#555;">(同音:字大 / 形近:白大)</span><br><b>自滿</b> <span style="font-size:13px; color:#555;">(同音:字滿 / 形近:白滿)</span><br><b>自動</b> <span style="font-size:13px; color:#555;">(同音:字動 / 形近:白動)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">實</b></td>
+          <td>實物、真實、實驗、果實（共 4 個）</td>
+          <td><b>實驗</b> <span style="font-size:13px; color:#555;">(同音:十驗 / 形近:貫驗)</span><br><b>實物</b> <span style="font-size:13px; color:#555;">(同音:十物 / 形近:貫物)</span><br><b>果實</b> <span style="font-size:13px; color:#555;">(同音:果十 / 形近:果貫)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(35)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(35)">刪除</button>
@@ -2350,9 +2330,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">意</b></td>
-          <td>大意、生意、意外（共 3 個）</td>
-          <td><b>大意</b> <span style="font-size:13px; color:#555;">(同音:大義 / 形近:大音)</span><br><b>生意</b> <span style="font-size:13px; color:#555;">(同音:生義 / 形近:生音)</span><br><b>意外</b> <span style="font-size:13px; color:#555;">(同音:義外 / 形近:音外)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">自</b></td>
+          <td>自大、自滿、自動、自然（共 4 個）</td>
+          <td><b>自大</b> <span style="font-size:13px; color:#555;">(同音:字大 / 形近:白大)</span><br><b>自滿</b> <span style="font-size:13px; color:#555;">(同音:字滿 / 形近:白滿)</span><br><b>自動</b> <span style="font-size:13px; color:#555;">(同音:字動 / 形近:白動)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(36)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(36)">刪除</button>
@@ -2363,9 +2343,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">來</b></td>
-          <td>前來、本來、外來（共 3 個）</td>
-          <td><b>前來</b> <span style="font-size:13px; color:#555;">(同音:前萊 / 形近:前夾)</span><br><b>本來</b> <span style="font-size:13px; color:#555;">(同音:本萊 / 形近:本夾)</span><br><b>外來</b> <span style="font-size:13px; color:#555;">(同音:外萊 / 形近:外夾)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">意</b></td>
+          <td>大意、生意、意外（共 3 個）</td>
+          <td><b>大意</b> <span style="font-size:13px; color:#555;">(同音:大義 / 形近:大音)</span><br><b>生意</b> <span style="font-size:13px; color:#555;">(同音:生義 / 形近:生音)</span><br><b>意外</b> <span style="font-size:13px; color:#555;">(同音:義外 / 形近:音外)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(37)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(37)">刪除</button>
@@ -2376,9 +2356,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">過</b></td>
-          <td>過期、過輕、過早、過馬路（共 4 個）</td>
-          <td><b>過河</b> <span style="font-size:13px; color:#555;">(同音:個河 / 形近:遇河)</span><br><b>過早</b> <span style="font-size:13px; color:#555;">(同音:個早 / 形近:遇早)</span><br><b>過重</b> <span style="font-size:13px; color:#555;">(同音:個重 / 形近:遇重 / 🔊讀:過仲)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">來</b></td>
+          <td>前來、本來、外來（共 3 個）</td>
+          <td><b>前來</b> <span style="font-size:13px; color:#555;">(同音:前萊 / 形近:前夾)</span><br><b>本來</b> <span style="font-size:13px; color:#555;">(同音:本萊 / 形近:本夾)</span><br><b>外來</b> <span style="font-size:13px; color:#555;">(同音:外萊 / 形近:外夾)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(38)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(38)">刪除</button>
@@ -2389,9 +2369,9 @@
               🙈 已隱藏
             </span>
           </td>
-          <td><b style="font-size:24px; color:var(--mario-blue);">氣</b></td>
-          <td>氣體、氣球、香氣、打氣、空氣（共 5 個）</td>
-          <td><b>氣體</b> <span style="font-size:13px; color:#555;">(同音:器體 / 形近:氧體)</span><br><b>氣球</b> <span style="font-size:13px; color:#555;">(同音:器球 / 形近:氧球)</span><br><b>香氣</b> <span style="font-size:13px; color:#555;">(同音:香器 / 形近:香氧)</span></td>
+          <td><b style="font-size:24px; color:var(--mario-blue);">過</b></td>
+          <td>過期、過輕、過早、過馬路（共 4 個）</td>
+          <td><b>過河</b> <span style="font-size:13px; color:#555;">(同音:個河 / 形近:遇河)</span><br><b>過早</b> <span style="font-size:13px; color:#555;">(同音:個早 / 形近:遇早)</span><br><b>過重</b> <span style="font-size:13px; color:#555;">(同音:個重 / 形近:遇重 / 🔊讀:過仲)</span></td>
           <td>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px;" onclick="editTarget(39)">修改</button>
             <button class="admin-btn" style="padding:4px 8px; font-size:13px; background:#ff6b6b;" onclick="deleteTarget(39)">刪除</button>
@@ -2413,6 +2393,198 @@
 
     // /*__DATA_START__*/
     const RAW_EXCEL_DATA = [
+  {
+    "target": "氣",
+    "pronounce": "",
+    "hidden": false,
+    "examples": [
+      {
+        "word": "氣體",
+        "img": "https://pansci.asia/wp-content/uploads/2021/03/building-2058_1280-942x628.jpg"
+      },
+      {
+        "word": "氣球",
+        "img": "https://i.imgur.com/WXOGcv3.jpeg"
+      },
+      {
+        "word": "香氣",
+        "img": "https://as.chdev.tw/web/article/e/8/4/e573e88c-8fd1-4c1e-b9ae-8119c542626b1642576414.jpg"
+      },
+      {
+        "word": "打氣",
+        "img": "https://www.kcs.edu.hk/ps/activity%20photos/photo/2016-17/2017_act_6/DSC_5631-min.JPG"
+      },
+      {
+        "word": "空氣",
+        "img": "https://cdn.langeek.co/photo/61934/original/air?type=jpeg"
+      }
+    ],
+    "tests": [
+      {
+        "word": "氣體",
+        "pronounce": "",
+        "homo": "器體",
+        "ortho": "氧體",
+        "explanation": "無固定形狀同體積，例如空氣、氧氣等",
+        "img": "https://pansci.asia/wp-content/uploads/2021/03/building-2058_1280-942x628.jpg"
+      },
+      {
+        "word": "氣球",
+        "pronounce": "",
+        "homo": "器球",
+        "ortho": "氧球",
+        "explanation": "",
+        "img": "https://i.imgur.com/WXOGcv3.jpeg"
+      },
+      {
+        "word": "香氣",
+        "pronounce": "",
+        "homo": "香器",
+        "ortho": "香氧",
+        "explanation": "",
+        "img": "https://as.chdev.tw/web/article/e/8/4/e573e88c-8fd1-4c1e-b9ae-8119c542626b1642576414.jpg"
+      }
+    ]
+  },
+  {
+    "target": "後",
+    "pronounce": "",
+    "hidden": false,
+    "examples": [
+      {
+        "word": "後面",
+        "img": "https://i.imgur.com/Ee1gLf0.jpeg"
+      },
+      {
+        "word": "之後、以後",
+        "img": "https://i.imgur.com/sJYr78v.jpeg"
+      },
+      {
+        "word": "門後",
+        "img": "https://i.imgur.com/ilk6AfJ.jpeg"
+      },
+      {
+        "word": "落後",
+        "img": "https://g.udn.com.tw/upfiles/B_KN/knsh03521/PSN_PHOTO/110/f_7651110_1.jpg"
+      }
+    ],
+    "tests": [
+      {
+        "word": "後方",
+        "pronounce": "",
+        "homo": "候方",
+        "ortho": "徒方",
+        "explanation": "後面嘅方向",
+        "img": "https://i.imgur.com/rLvJnmj.jpeg"
+      },
+      {
+        "word": "後日",
+        "pronounce": "",
+        "homo": "候日",
+        "ortho": "徒日",
+        "explanation": "之後嘅日子",
+        "img": "https://i.imgur.com/j3iJkPw.jpeg"
+      },
+      {
+        "word": "背後",
+        "pronounce": "",
+        "homo": "背候",
+        "ortho": "背徒",
+        "explanation": "",
+        "img": "https://i.imgur.com/PCPKwjI.jpeg"
+      }
+    ]
+  },
+  {
+    "target": "前",
+    "pronounce": "",
+    "hidden": false,
+    "examples": [
+      {
+        "word": "前面",
+        "img": "https://i.imgur.com/58vGCh1.jpeg"
+      },
+      {
+        "word": "之前、以前",
+        "img": "https://i.imgur.com/BfziHdV.jpeg"
+      }
+    ],
+    "tests": [
+      {
+        "word": "前方",
+        "pronounce": "",
+        "homo": "錢方",
+        "ortho": "煎方",
+        "img": "https://i.imgur.com/0zmWu38.jpeg",
+        "explanation": "前面嘅方向"
+      },
+      {
+        "word": "前日",
+        "pronounce": "",
+        "homo": "錢日",
+        "ortho": "煎日",
+        "img": "https://i.imgur.com/BGsnR4h.jpeg",
+        "explanation": "之前嘅日子"
+      },
+      {
+        "word": "門前",
+        "pronounce": "",
+        "homo": "門錢",
+        "ortho": "門煎",
+        "img": "https://i.imgur.com/pcCK1eg.jpeg",
+        "explanation": ""
+      }
+    ]
+  },
+  {
+    "target": "道",
+    "pronounce": "",
+    "hidden": false,
+    "examples": [
+      {
+        "word": "道路",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5YjzTXz2xaI8Tg-mLYWBk8jMXYvYwhVQKAEHxdB3I_l9A1sszejVgnXw&s=10"
+      },
+      {
+        "word": "鐵道",
+        "img": "https://cdn.hk01.com/di/media/images/dw/20241025/926443694964346880327149.jpeg/YojFwvU-JjkcDiyFev1wbstIVyAtX8fqAD54NwA-eDc?v=w1280r16_9"
+      },
+      {
+        "word": "行人道",
+        "img": "https://www.td.gov.hk/filemanager/en/content_5120/f4.4_b.jpg"
+      },
+      {
+        "word": "知道",
+        "img": "https://thumbs.dreamstime.com/b/%E4%B8%BE%E6%89%8B%E7%9A%84%E5%AD%A9%E5%AD%90%E8%AE%A4%E8%AF%86%E7%AD%94%E5%A4%8D%E5%AF%B9%E9%97%AE%E9%A2%98-52260609.jpg"
+      }
+    ],
+    "tests": [
+      {
+        "word": "跑道",
+        "pronounce": "",
+        "homo": "跑到",
+        "ortho": "跑進",
+        "img": "https://img.ltn.com.tw/Upload/sports/page/800/2021/08/03/phpZ2OQmN.jpg",
+        "explanation": "俾人跑步嘅道路"
+      },
+      {
+        "word": "街道",
+        "pronounce": "",
+        "homo": "街到",
+        "ortho": "街進",
+        "img": "https://www.gohk.gov.hk/uploads/photo/9_YTM_35_%E5%BD%8C%E6%95%A6%E9%81%93.jpg",
+        "explanation": "街上的道路"
+      },
+      {
+        "word": "車道",
+        "pronounce": "",
+        "homo": "車到",
+        "ortho": "車進",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrMv3rRtB6NmEP9yvpngQBtQ27tFwNVkO3pU7cJWU8zuEtTe-CPuGdUIg&s=10",
+        "explanation": ""
+      }
+    ]
+  },
   {
     "target": "感",
     "pronounce": "",
@@ -2645,104 +2817,6 @@
         "pronounce": "",
         "homo": "洞力",
         "ortho": "勳力",
-        "explanation": "",
-        "img": ""
-      }
-    ]
-  },
-  {
-    "target": "後",
-    "pronounce": "",
-    "hidden": true,
-    "examples": [
-      {
-        "word": "後面",
-        "img": "https://i.imgur.com/Ee1gLf0.jpeg"
-      },
-      {
-        "word": "之後",
-        "img": ""
-      },
-      {
-        "word": "以後",
-        "img": ""
-      },
-      {
-        "word": "落後",
-        "img": "https://g.udn.com.tw/upfiles/B_KN/knsh03521/PSN_PHOTO/110/f_7651110_1.jpg"
-      }
-    ],
-    "tests": [
-      {
-        "word": "後方",
-        "pronounce": "",
-        "homo": "厚方",
-        "ortho": "徒方",
-        "explanation": "後面嘅方向",
-        "img": "https://i.imgur.com/rLvJnmj.jpeg"
-      },
-      {
-        "word": "後日",
-        "pronounce": "",
-        "homo": "厚日",
-        "ortho": "徒日",
-        "explanation": "之後嘅日子",
-        "img": "https://i.imgur.com/j3iJkPw.jpeg"
-      },
-      {
-        "word": "背後",
-        "pronounce": "",
-        "homo": "背厚",
-        "ortho": "背徒",
-        "explanation": "",
-        "img": "https://i.imgur.com/PCPKwjI.jpeg"
-      }
-    ]
-  },
-  {
-    "target": "前",
-    "pronounce": "",
-    "hidden": true,
-    "examples": [
-      {
-        "word": "前面",
-        "img": "https://i.imgur.com/58vGCh1.jpeg"
-      },
-      {
-        "word": "之前",
-        "img": ""
-      },
-      {
-        "word": "以前",
-        "img": ""
-      },
-      {
-        "word": "從前",
-        "img": ""
-      }
-    ],
-    "tests": [
-      {
-        "word": "前方",
-        "pronounce": "",
-        "homo": "錢方",
-        "ortho": "煎方",
-        "explanation": "前面嘅方向",
-        "img": "https://i.imgur.com/0zmWu38.jpeg"
-      },
-      {
-        "word": "前日",
-        "pronounce": "",
-        "homo": "錢日",
-        "ortho": "煎日",
-        "explanation": "之前嘅日子",
-        "img": "https://i.imgur.com/BGsnR4h.jpeg"
-      },
-      {
-        "word": "前年",
-        "pronounce": "",
-        "homo": "錢年",
-        "ortho": "煎年",
         "explanation": "",
         "img": ""
       }
@@ -2982,55 +3056,6 @@
         "ortho": "桌了",
         "explanation": "",
         "img": "https://img.yec.tw/zp/MerchandiseImages/21B94E99B6-SP-14040714.jpg"
-      }
-    ]
-  },
-  {
-    "target": "道",
-    "pronounce": "",
-    "hidden": true,
-    "examples": [
-      {
-        "word": "道路",
-        "img": "https://cdn.photock.jp/photos/a0732/medium.webp"
-      },
-      {
-        "word": "車道",
-        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrMv3rRtB6NmEP9yvpngQBtQ27tFwNVkO3pU7cJWU8zuEtTe-CPuGdUIg&s=10"
-      },
-      {
-        "word": "行人道",
-        "img": "https://www.td.gov.hk/filemanager/en/content_5120/f4.4_b.jpg"
-      },
-      {
-        "word": "知道",
-        "img": "https://thumbs.dreamstime.com/b/%E4%B8%BE%E6%89%8B%E7%9A%84%E5%AD%A9%E5%AD%90%E8%AE%A4%E8%AF%86%E7%AD%94%E5%A4%8D%E5%AF%B9%E9%97%AE%E9%A2%98-52260609.jpg"
-      }
-    ],
-    "tests": [
-      {
-        "word": "跑道",
-        "pronounce": "",
-        "homo": "跑度",
-        "ortho": "跑首",
-        "explanation": "俾人跑步嘅道路",
-        "img": "https://img.ltn.com.tw/Upload/sports/page/800/2021/08/03/phpZ2OQmN.jpg"
-      },
-      {
-        "word": "街道",
-        "pronounce": "",
-        "homo": "街度",
-        "ortho": "街首",
-        "explanation": "",
-        "img": "https://www.gohk.gov.hk/uploads/photo/9_YTM_35_%E5%BD%8C%E6%95%A6%E9%81%93.jpg"
-      },
-      {
-        "word": "鐵道",
-        "pronounce": "",
-        "homo": "鐵度",
-        "ortho": "鐵首",
-        "explanation": "",
-        "img": "https://cdn.hk01.com/di/media/images/dw/20241025/926443694964346880327149.jpeg/YojFwvU-JjkcDiyFev1wbstIVyAtX8fqAD54NwA-eDc?v=w1280r16_9"
       }
     ]
   },
@@ -4231,59 +4256,6 @@
         "img": "https://i.imgur.com/DGAkBEZ.jpeg"
       }
     ]
-  },
-  {
-    "target": "氣",
-    "pronounce": "",
-    "hidden": true,
-    "examples": [
-      {
-        "word": "氣體",
-        "img": "https://pansci.asia/wp-content/uploads/2021/03/building-2058_1280-942x628.jpg"
-      },
-      {
-        "word": "氣球",
-        "img": "https://i.imgur.com/WXOGcv3.jpeg"
-      },
-      {
-        "word": "香氣",
-        "img": "https://as.chdev.tw/web/article/e/8/4/e573e88c-8fd1-4c1e-b9ae-8119c542626b1642576414.jpg"
-      },
-      {
-        "word": "打氣",
-        "img": "https://www.kcs.edu.hk/ps/activity%20photos/photo/2016-17/2017_act_6/DSC_5631-min.JPG"
-      },
-      {
-        "word": "空氣",
-        "img": "https://cdn.langeek.co/photo/61934/original/air?type=jpeg"
-      }
-    ],
-    "tests": [
-      {
-        "word": "氣體",
-        "pronounce": "",
-        "homo": "器體",
-        "ortho": "氧體",
-        "explanation": "無固定形狀同體積，例如空氣、氧氣等",
-        "img": "https://pansci.asia/wp-content/uploads/2021/03/building-2058_1280-942x628.jpg"
-      },
-      {
-        "word": "氣球",
-        "pronounce": "",
-        "homo": "器球",
-        "ortho": "氧球",
-        "explanation": "",
-        "img": "https://i.imgur.com/WXOGcv3.jpeg"
-      },
-      {
-        "word": "香氣",
-        "pronounce": "",
-        "homo": "香器",
-        "ortho": "香氧",
-        "explanation": "",
-        "img": "https://as.chdev.tw/web/article/e/8/4/e573e88c-8fd1-4c1e-b9ae-8119c542626b1642576414.jpg"
-      }
-    ]
   }
 ];
     // /*__DATA_END__*/
@@ -4384,6 +4356,25 @@
     let currentAnswer = [];
     let currentSlotChars = [];
     let mcAnswered = false;
+    let lastMcCorrectIdx = -1; // 記錄上一題選擇題正確答案位置，避免連續同號
+
+    // 均勻隨機洗牌函式（Fisher-Yates Shuffle，優先使用加密級隨機數）
+    function shuffleArrayUniform(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        let j;
+        if (window.crypto && window.crypto.getRandomValues) {
+          const randBuf = new Uint32Array(1);
+          window.crypto.getRandomValues(randBuf);
+          j = randBuf[0] % (i + 1);
+        } else {
+          j = Math.floor(Math.random() * (i + 1));
+        }
+        const temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+      return arr;
+    }
 
     // 儲物箱與分頁狀態變數（每頁 10 個目標字）
     let isChestOpen = false;
@@ -4952,8 +4943,17 @@
           { text: distractors.homo, isCorrect: false },
           { text: distractors.ortho, isCorrect: false }
         ];
-        // 隨機排列 3 個選項
-        options.sort(() => Math.random() - 0.5);
+        // 使用 Fisher-Yates 演算法完全隨機排列 3 個選項，並確保正確答案不會連續固定在同一位置
+        let attempts = 0;
+        do {
+          shuffleArrayUniform(options);
+          attempts++;
+        } while (
+          options.length > 1 &&
+          options.findIndex(o => o.isCorrect) === lastMcCorrectIdx &&
+          attempts < 5
+        );
+        lastMcCorrectIdx = options.findIndex(o => o.isCorrect);
 
         const mcBox = document.getElementById('mcChoicesContainer');
         mcBox.innerHTML = "";
@@ -5000,7 +5000,7 @@
           const rand = distractorChars.splice(Math.floor(Math.random() * distractorChars.length), 1)[0];
           if (!poolChars.includes(rand)) poolChars.push(rand);
         }
-        poolChars.sort(() => Math.random() - 0.5);
+        shuffleArrayUniform(poolChars);
 
         const poolBox = document.getElementById('poolContainer');
         poolBox.innerHTML = "";
@@ -5666,4 +5666,4 @@
 
 
 
-</body><grammarly-desktop-integration data-grammarly-shadow-root="true" style="visibility: visible !important;"></grammarly-desktop-integration></html>
+</body></html>
